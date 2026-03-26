@@ -6,494 +6,147 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <title>PhoneFlip</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-@font-face {
-  font-family: 'Bebas Neue';
-  font-display: swap;
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-display: swap;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-/* FORCEER DONKER THEMA OVERAL */
-html { background: #07070f !important; color-scheme: dark; }
-body { background: #07070f !important; }
-.main-card { background: #0e0e1c !important; }
-.section { background: #0e0e1c !important; }
-.price-box { background: #0e0e1c !important; }
-.spec-box { background: #0e0e1c !important; }
-.c-contact { background: #141428 !important; }
-.topbar { background: #07070f !important; }
-.stats { background: #07070f !important; }
-.card-area { background: #07070f !important; }
-.actions { background: #07070f !important; }
-.stat { background: #0e0e1c !important; }
-.saved-badge { background: #141428 !important; color: #ffffff !important; }
-.live-badge { background: rgba(0,232,122,.1) !important; }
+@font-face { font-family: 'Bebas Neue'; font-display: swap; }
+@font-face { font-family: 'DM Sans'; font-display: swap; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 :root {
-–bg: #050508;
-–card: #0a0a16;
-–card2: #0f0f20;
-–border: #1a1a30;
-–green: #00e87a;
-–red: #ff3c5a;
-–gold: #ffb800;
-–blue: #4d8dff;
-–text: #ffffff;
-–muted: #7777aa;
+–bg: #07070f; –card: #0e0e1c; –card2: #141428; –border: #222238;
+–green: #00e87a; –red: #ff3c5a; –gold: #ffb800; –blue: #4d8dff;
+–purple: #a855f7; –text: #ffffff; –muted: #7777aa;
 }
 
-html, body {
-height: 100%;
-height: 100dvh;
-overflow: hidden;
-background: var(–bg);
-font-family: ‘DM Sans’, -apple-system, sans-serif;
-color: var(–text);
-}
+html, body { height: 100%; height: 100dvh; overflow: hidden; background: #07070f; color: #fff; font-family: ‘DM Sans’, -apple-system, sans-serif; }
+body { display: flex; flex-direction: column; max-width: 430px; margin: 0 auto; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
 
-body {
-display: flex;
-flex-direction: column;
-max-width: 430px;
-margin: 0 auto;
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-bottom);
-}
-
-/* ── TOPBAR ── */
-.topbar {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 14px 20px 8px;
-flex-shrink: 0;
-}
-
-.logo {
-font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif;
-font-size: 36px;
-letter-spacing: 2px;
-background: linear-gradient(120deg, #a855f7, #4d8dff);
--webkit-background-clip: text;
--webkit-text-fill-color: transparent;
-background-clip: text;
-}
-
+/* TOPBAR */
+.topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px 8px; flex-shrink: 0; background: #07070f; }
+.logo { font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 34px; letter-spacing: 2px; background: linear-gradient(120deg, #a855f7, #4d8dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .top-right { display: flex; gap: 10px; align-items: center; }
-
-.live-badge {
-display: flex;
-align-items: center;
-gap: 6px;
-background: rgba(0,232,122,.1);
-border: 1.5px solid rgba(0,232,122,.25);
-border-radius: 30px;
-padding: 7px 14px;
-font-size: 13px;
-font-weight: 700;
-color: var(–green);
-letter-spacing: .5px;
-}
-
-.live-dot {
-width: 8px; height: 8px;
-border-radius: 50%;
-background: var(–green);
-box-shadow: 0 0 6px var(–green);
-animation: blink 1.5s ease-in-out infinite;
-}
-
+.live-badge { display: flex; align-items: center; gap: 6px; background: rgba(168,85,247,.12); border: 1.5px solid rgba(168,85,247,.3); border-radius: 30px; padding: 7px 14px; font-size: 13px; font-weight: 700; color: #a855f7; }
+.live-dot { width: 8px; height: 8px; border-radius: 50%; background: #a855f7; box-shadow: 0 0 6px #a855f7; animation: blink 1.5s ease-in-out infinite; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+.saved-badge { background: #141428; border: 1.5px solid #222238; border-radius: 30px; padding: 7px 16px; font-size: 14px; font-weight: 700; cursor: pointer; color: #fff; }
 
-.saved-badge {
-background: var(–card2);
-border: 1.5px solid var(–border);
-border-radius: 30px;
-padding: 7px 16px;
-font-size: 14px;
-font-weight: 700;
-cursor: pointer;
-color: var(–text);
-}
+/* STATS */
+.stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; padding: 0 20px 10px; flex-shrink: 0; background: #07070f; }
+.stat { background: #0e0e1c; border: 1.5px solid #222238; border-radius: 16px; padding: 10px 6px; text-align: center; }
+.stat-label { font-size: 10px; color: #7777aa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.stat-value { font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 22px; color: #a855f7; }
 
-/* ── STATS ── */
-.stats {
-display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 8px;
-padding: 0 20px 10px;
-flex-shrink: 0;
-}
-
-.stat {
-background: #080812;
-border: 1.5px solid #1a1a2e;
-border-radius: 16px;
-padding: 10px 6px;
-text-align: center;
-}
-
-.stat-label {
-font-size: 10px;
-color: var(–muted);
-text-transform: uppercase;
-letter-spacing: 1px;
-margin-bottom: 4px;
-}
-
-.stat-value {
-font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif;
-font-size: 22px;
-color: var(–green);
-}
-
-/* ── CARD AREA ── */
-.card-area {
-flex: 1;
-min-height: 0;
-position: relative;
-padding: 0 16px;
-}
-
-/* Stack shadow cards */
-.shadow-card {
-position: absolute;
-inset: 0 16px;
-background: var(–card);
-border: 1.5px solid var(–border);
-border-radius: 24px;
-transform-origin: bottom center;
-}
+/* CARD AREA */
+.card-area { flex: 1; min-height: 0; position: relative; padding: 0 16px; background: #07070f; }
+.shadow-card { position: absolute; inset: 0 16px; background: #0e0e1c; border: 1.5px solid #222238; border-radius: 24px; transform-origin: bottom center; }
 .shadow-card:nth-child(1) { transform: translateY(8px) scale(.96); opacity: .4; }
 .shadow-card:nth-child(2) { transform: translateY(16px) scale(.92); opacity: .2; }
-
-/* Main card */
-.main-card {
-position: absolute;
-inset: 0;
-background: var(–card);
-border: 1.5px solid var(–border);
-border-radius: 24px;
-overflow-y: scroll;
-overflow-x: hidden;
--webkit-overflow-scrolling: touch;
-scrollbar-width: none;
-}
+.main-card { position: absolute; inset: 0; background: #0e0e1c; border: 1.5px solid #222238; border-radius: 24px; overflow-y: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .main-card::-webkit-scrollbar { display: none; }
 
-/* Swipe hints */
-.swipe-hint {
-position: absolute;
-top: 20px;
-z-index: 20;
-padding: 8px 16px;
-border-radius: 10px;
-font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif;
-font-size: 22px;
-letter-spacing: 1px;
-opacity: 0;
-pointer-events: none;
-transition: opacity .1s;
-}
-.hint-save { left: 16px; background: rgba(0,232,122,.15); border: 2px solid var(–green); color: var(–green); }
-.hint-skip { right: 16px; background: rgba(255,60,90,.15); border: 2px solid var(–red); color: var(–red); }
+/* SWIPE HINTS */
+.swipe-hint { position: absolute; top: 20px; z-index: 20; padding: 8px 16px; border-radius: 10px; font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 22px; letter-spacing: 1px; opacity: 0; pointer-events: none; }
+.hint-save { left: 16px; background: rgba(0,232,122,.15); border: 2px solid #00e87a; color: #00e87a; }
+.hint-skip { right: 16px; background: rgba(255,60,90,.15); border: 2px solid #ff3c5a; color: #ff3c5a; }
 
-/* ── FOTO ── */
-.car-photo {
-width: 100%;
-height: 200px;
-object-fit: cover;
-border-bottom: 1.5px solid var(–border);
-display: block;
-}
+/* CARD CONTENT */
+.deal-foto { width: 100%; height: 200px; object-fit: cover; border-bottom: 1.5px solid #222238; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #141428, #0e0e1c); font-size: 80px; }
+.section { padding: 16px 18px; border-bottom: 1.5px solid #222238; background: #0e0e1c; }
 
-/* ── CARD SECTIONS ── */
-.section {
-padding: 16px 18px;
-border-bottom: 1.5px solid #1a1a30;
-background: #0a0a16;
-}
-
-/* Badges */
+/* BADGES */
 .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-.badge {
-font-size: 12px;
-font-weight: 700;
-padding: 5px 11px;
-border-radius: 8px;
-text-transform: uppercase;
-letter-spacing: .4px;
-}
-.b-hot { background: rgba(255,60,90,.15); color: var(–red); border: 1.5px solid rgba(255,60,90,.3); }
-.b-dmg { background: rgba(255,184,0,.12); color: var(–gold); border: 1.5px solid rgba(255,184,0,.3); }
-.b-hyb { background: rgba(77,141,255,.12); color: var(–blue); border: 1.5px solid rgba(77,141,255,.3); }
-.b-urg { background: rgba(255,130,60,.12); color: #ff9060; border: 1.5px solid rgba(255,130,60,.3); }
-.b-ok  { background: rgba(0,232,122,.08); color: var(–green); border: 1.5px solid rgba(0,232,122,.2); }
-.b-live { background: rgba(0,232,122,.08); color: var(–green); border: 1.5px solid rgba(0,232,122,.2); }
+.badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: .4px; }
+.b-hot { background: rgba(255,60,90,.15); color: #ff3c5a; border: 1.5px solid rgba(255,60,90,.3); }
+.b-dmg { background: rgba(255,184,0,.12); color: #ffb800; border: 1.5px solid rgba(255,184,0,.3); }
+.b-ok  { background: rgba(0,232,122,.08); color: #00e87a; border: 1.5px solid rgba(0,232,122,.2); }
+.b-iphone { background: rgba(77,141,255,.1); color: #4d8dff; border: 1.5px solid rgba(77,141,255,.3); }
+.b-sam { background: rgba(0,180,255,.1); color: #00b4ff; border: 1.5px solid rgba(0,180,255,.3); }
 
-/* Title */
-.car-title {
-font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif;
-font-size: 28px;
-letter-spacing: .5px;
-line-height: 1.15;
-margin-bottom: 5px;
-}
-.car-sub { font-size: 14px; color: var(–muted); }
+.deal-title { font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 26px; letter-spacing: .5px; line-height: 1.2; margin-bottom: 5px; }
+.deal-sub { font-size: 14px; color: #7777aa; }
 
-/* Price grid */
-.price-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1px;
-background: var(–border);
-border-bottom: 1.5px solid var(–border);
-}
-.price-box {
-background: #09091a;
-padding: 16px 18px;
-}
-.price-lbl { font-size: 11px; color: var(–muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
-.price-num { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 34px; line-height: 1; }
-.p-ask { color: var(–text); }
-.p-bid { color: var(–gold); }
+/* PRIJZEN */
+.price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #222238; border-bottom: 1.5px solid #222238; }
+.price-box { background: #0e0e1c; padding: 16px 18px; }
+.price-lbl { font-size: 11px; color: #7777aa; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+.price-num { font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 34px; line-height: 1; }
+.p-inkoop { color: #ffb800; }
+.p-verkoop { color: #00e87a; }
 
-/* Winst banner */
-.winst-banner {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 14px 18px;
-background: linear-gradient(135deg, rgba(0,232,122,.1), rgba(0,196,255,.06));
-border-bottom: 1.5px solid rgba(0,232,122,.12);
-}
-.winst-left .lbl { font-size: 11px; color: var(–muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; }
-.winst-left .val { font-size: 15px; color: var(–muted); }
-.winst-right .lbl { font-size: 11px; color: var(–muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; text-align: right; }
-.winst-num { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 36px; color: var(–green); text-align: right; line-height: 1; }
+/* WINST BANNER */
+.winst-banner { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: linear-gradient(135deg, rgba(168,85,247,.07), rgba(77,141,255,.04)); border-bottom: 1.5px solid rgba(168,85,247,.12); }
+.w-lbl { font-size: 11px; color: #7777aa; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; }
+.w-val { font-size: 14px; color: #7777aa; }
+.winst-num { font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 36px; color: #00e87a; text-align: right; line-height: 1; }
 .winst-perc { font-size: 16px; opacity: .6; }
 
-/* Specs */
-.specs-grid {
-display: grid;
-grid-template-columns: 1fr 1fr;
-gap: 1px;
-background: var(–border);
-border-bottom: 1.5px solid var(–border);
-}
-.spec-box { background: #09091a; padding: 13px 18px; }
-.spec-lbl { font-size: 10px; color: var(–muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+/* SPECS */
+.specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #222238; border-bottom: 1.5px solid #222238; }
+.spec-box { background: #0e0e1c; padding: 13px 18px; }
+.spec-lbl { font-size: 10px; color: #7777aa; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
 .spec-val { font-size: 15px; font-weight: 600; }
 
-/* Beschrijving */
-.desc-text { font-size: 14px; color: var(–muted); line-height: 1.7; }
+/* TIP BOX */
+.tip-box { margin-top: 12px; background: rgba(0,232,122,.05); border: 1.5px solid rgba(0,232,122,.15); border-radius: 12px; padding: 12px 14px; }
+.tip-title { font-size: 11px; color: #00e87a; text-transform: uppercase; letter-spacing: .8px; font-weight: 700; margin-bottom: 5px; }
+.tip-text { font-size: 13px; color: #7777aa; line-height: 1.65; }
 
-/* Buttons */
+/* SCHADE BOX */
+.schade-box { margin-top: 12px; background: rgba(255,184,0,.06); border: 1.5px solid rgba(255,184,0,.2); border-radius: 12px; padding: 12px 14px; }
+.schade-title { font-size: 11px; color: #ffb800; text-transform: uppercase; letter-spacing: .8px; font-weight: 700; margin-bottom: 5px; }
+.box-text { font-size: 13px; color: #7777aa; line-height: 1.65; }
+
+/* BUTTONS */
 .btn-row { display: flex; gap: 10px; margin-top: 14px; }
-.link-btn {
-flex: 1;
-text-align: center;
-background: #0a0a18;
-border: 1.5px solid #1a1a30;
-border-radius: 12px;
-padding: 13px 8px;
-font-size: 13px;
-font-weight: 700;
-color: var(–muted);
-text-decoration: none;
-transition: all .15s;
-}
+.link-btn { flex: 1; text-align: center; background: #141428; border: 1.5px solid #222238; border-radius: 12px; padding: 14px 8px; font-size: 13px; font-weight: 700; color: #7777aa; text-decoration: none; display: block; }
 .link-btn:active { transform: scale(.96); }
-.link-btn-mp { color: var(–green); border-color: rgba(0,232,122,.25); background: rgba(0,232,122,.06); }
+.link-btn-mp { color: #a855f7; border-color: rgba(168,85,247,.3); background: rgba(168,85,247,.07); font-size: 15px; }
 
-/* Progress dots */
-.progress {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 6px;
-padding: 14px;
-}
-.dot { width: 7px; height: 7px; border-radius: 50%; background: var(–border); transition: all .25s; }
-.dot.active { background: var(–green); transform: scale(1.5); box-shadow: 0 0 6px var(–green); }
-.dot.done { background: var(–muted); }
+/* PROGRESS */
+.progress { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 14px; background: #0e0e1c; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #222238; transition: all .25s; }
+.dot.active { background: #a855f7; transform: scale(1.5); box-shadow: 0 0 6px #a855f7; }
+.dot.done { background: #7777aa; }
 
-/* ── ACTION BUTTONS ── */
-.actions {
-display: grid;
-grid-template-columns: 1fr 1.6fr 1fr;
-gap: 12px;
-padding: 12px 20px 16px;
-flex-shrink: 0;
-}
-
-.action-btn {
-border: none;
-border-radius: 20px;
-cursor: pointer;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 5px;
-font-family: ‘DM Sans’, sans-serif;
-transition: all .15s;
--webkit-tap-highlight-color: transparent;
-}
-
+/* ACTIONS */
+.actions { display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 12px; padding: 12px 20px 16px; flex-shrink: 0; background: #07070f; }
+.action-btn { border: none; border-radius: 20px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; font-family: ‘DM Sans’, sans-serif; transition: transform .15s; }
 .action-btn:active { transform: scale(.90); }
-
-.btn-skip {
-background: #1a0810;
-border: 1.5px solid rgba(255,60,90,.35);
-color: var(–red);
-padding: 16px 8px;
-}
-
-.btn-save {
-background: linear-gradient(135deg, #a855f7, #4d8dff);
-color: var(–text);
-padding: 18px 8px;
-font-weight: 800;
-box-shadow: 0 6px 28px rgba(0,232,122,.3);
-}
-
-.btn-next {
-background: #080e1a;
-border: 1.5px solid rgba(77,141,255,.35);
-color: var(–blue);
-padding: 16px 8px;
-}
-
+.btn-skip { background: rgba(255,60,90,.1); border: 1.5px solid rgba(255,60,90,.25); color: #ff3c5a; padding: 16px 8px; }
+.btn-save { background: linear-gradient(135deg, #a855f7, #4d8dff); color: #fff; padding: 18px 8px; font-weight: 800; box-shadow: 0 6px 28px rgba(168,85,247,.3); }
+.btn-next { background: rgba(77,141,255,.1); border: 1.5px solid rgba(77,141,255,.25); color: #4d8dff; padding: 16px 8px; }
 .btn-icon { font-size: 28px; }
 .btn-label { font-size: 11px; font-weight: 700; opacity: .7; text-transform: uppercase; letter-spacing: .8px; }
 
-/* ── STATE CARDS ── */
-.state-screen {
-position: absolute;
-inset: 0;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 16px;
-text-align: center;
-padding: 32px;
-}
-
+/* STATE SCREENS */
+.state-screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 32px; background: #0e0e1c; border-radius: 24px; }
 .state-icon { font-size: 64px; }
-.state-title { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 36px; letter-spacing: .5px; }
-.state-sub { font-size: 15px; color: var(–muted); line-height: 1.7; }
+.state-title { font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 36px; }
+.state-sub { font-size: 15px; color: #7777aa; line-height: 1.7; }
+.reload-btn { background: linear-gradient(135deg, #a855f7, #4d8dff); color: #fff; border: none; border-radius: 16px; padding: 16px 36px; font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 22px; cursor: pointer; box-shadow: 0 6px 24px rgba(168,85,247,.3); margin-top: 8px; }
 
-.spinner {
-width: 52px; height: 52px;
-border: 4px solid var(–border);
-border-top-color: var(–green);
-border-radius: 50%;
-animation: spin .9s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.reload-btn {
-background: linear-gradient(135deg, #a855f7, #4d8dff);
-color: var(–text);
-border: none;
-border-radius: 16px;
-padding: 16px 36px;
-font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif;
-font-size: 22px;
-cursor: pointer;
-letter-spacing: .5px;
-box-shadow: 0 6px 24px rgba(0,232,122,.25);
-}
-
-/* ── SAVED PANEL ── */
-#saved-panel {
-position: fixed;
-inset: 0;
-background: #050508;
-z-index: 100;
-display: none;
-flex-direction: column;
-max-width: 430px;
-margin: 0 auto;
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-bottom);
-}
-
-.panel-header {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 18px 20px 14px;
-border-bottom: 1.5px solid var(–border);
-flex-shrink: 0;
-}
-
-.panel-title { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 30px; color: var(–green); }
-
-.close-btn {
-background: var(–card2);
-border: 1.5px solid var(–border);
-border-radius: 50%;
-width: 42px; height: 42px;
-cursor: pointer;
-color: var(–text);
-font-size: 18px;
-display: flex; align-items: center; justify-content: center;
-}
-
+/* SAVED PANEL */
+#saved-panel { position: fixed; inset: 0; background: #07070f; z-index: 100; display: none; flex-direction: column; max-width: 430px; margin: 0 auto; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.panel-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 14px; border-bottom: 1.5px solid #222238; flex-shrink: 0; }
+.panel-title { font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 30px; color: #a855f7; }
+.close-btn { background: #141428; border: 1.5px solid #222238; border-radius: 50%; width: 42px; height: 42px; cursor: pointer; color: #fff; font-size: 18px; display: flex; align-items: center; justify-content: center; }
 #saved-list { flex: 1; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
-
-.saved-item {
-background: #0a0a16;
-border: 1.5px solid rgba(0,232,122,.2);
-border-radius: 18px;
-padding: 16px;
-display: flex;
-align-items: flex-start;
-justify-content: space-between;
-gap: 12px;
-}
-
+.saved-item { background: #0e0e1c; border: 1.5px solid rgba(168,85,247,.2); border-radius: 18px; padding: 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .si-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-.si-meta { font-size: 13px; color: var(–muted); margin-bottom: 10px; }
-.si-winst { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 28px; color: var(–green); text-align: right; }
-.si-lbl { font-size: 11px; color: var(–muted); text-align: right; }
-
-.open-btn {
-display: block;
-background: rgba(0,232,122,.08);
-border: 1.5px solid rgba(0,232,122,.25);
-color: var(–green);
-border-radius: 10px;
-padding: 10px 14px;
-font-size: 13px;
-font-weight: 700;
-text-decoration: none;
-text-align: center;
-}
-
-.empty-saved { text-align: center; padding: 60px 20px; color: var(–muted); }
+.si-meta { font-size: 13px; color: #7777aa; margin-bottom: 10px; }
+.si-winst { font-family: ‘Bebas Neue’, Impact, sans-serif; font-size: 26px; color: #00e87a; text-align: right; }
+.si-lbl { font-size: 11px; color: #7777aa; text-align: right; }
+.open-btn { display: block; background: rgba(168,85,247,.08); border: 1.5px solid rgba(168,85,247,.25); color: #a855f7; border-radius: 10px; padding: 10px 14px; font-size: 13px; font-weight: 700; text-decoration: none; text-align: center; }
+.empty-saved { text-align: center; padding: 60px 20px; color: #7777aa; }
 .empty-saved .ei { font-size: 56px; margin-bottom: 14px; }
 .empty-saved p { font-size: 15px; line-height: 1.7; }
 </style>
 
 </head>
 <body>
-
-<!-- TOPBAR -->
 
 <div class="topbar">
   <div class="logo">PhoneFlip</div>
@@ -503,264 +156,189 @@ text-align: center;
   </div>
 </div>
 
-<!-- STATS -->
-
 <div class="stats">
-  <div class="stat">
-    <div class="stat-label">Deals</div>
-    <div class="stat-value" id="s-leads">—</div>
-  </div>
-  <div class="stat">
-    <div class="stat-label">Gem. winst</div>
-    <div class="stat-value" id="s-marge">—</div>
-  </div>
-  <div class="stat">
-    <div class="stat-label">Beste deal</div>
-    <div class="stat-value" id="s-best">—</div>
-  </div>
+  <div class="stat"><div class="stat-label">Deals</div><div class="stat-value" id="s-leads">—</div></div>
+  <div class="stat"><div class="stat-label">Gem. winst</div><div class="stat-value" id="s-marge">—</div></div>
+  <div class="stat"><div class="stat-label">Beste deal</div><div class="stat-value" id="s-best">—</div></div>
 </div>
-
-<!-- CARD AREA -->
 
 <div class="card-area">
   <div class="shadow-card"></div>
   <div class="shadow-card"></div>
-  <div class="main-card" id="main-card">
-    <div class="state-screen">
-      <div class="spinner"></div>
-      <div class="state-title">Scannen...</div>
-      <div class="state-sub">Echte Marktplaats deals ophalen</div>
-    </div>
-  </div>
+  <div class="main-card" id="main-card"></div>
 </div>
-
-<!-- ACTIONS -->
 
 <div class="actions">
-  <button class="action-btn btn-skip" onclick="skipDeal()">
-    <span class="btn-icon">✕</span>
-    <span class="btn-label">Skip</span>
-  </button>
-  <button class="action-btn btn-save" onclick="saveDeal()">
-    <span class="btn-icon">💾</span>
-    <span class="btn-label">Opslaan</span>
-  </button>
-  <button class="action-btn btn-next" onclick="nextDeal()">
-    <span class="btn-icon">→</span>
-    <span class="btn-label">Volgende</span>
-  </button>
+  <button class="action-btn btn-skip" onclick="skipDeal()"><span class="btn-icon">✕</span><span class="btn-label">Skip</span></button>
+  <button class="action-btn btn-save" onclick="saveDeal()"><span class="btn-icon">💾</span><span class="btn-label">Opslaan</span></button>
+  <button class="action-btn btn-next" onclick="nextDeal()"><span class="btn-icon">→</span><span class="btn-label">Volgende</span></button>
 </div>
-
-<!-- SAVED PANEL -->
 
 <div id="saved-panel">
   <div class="panel-header">
-    <div class="panel-title">💾 Opgeslagen deals</div>
+    <div class="panel-title">💾 Opgeslagen</div>
     <button class="close-btn" onclick="closeSaved()">✕</button>
   </div>
   <div id="saved-list">
-    <div class="empty-saved">
-      <div class="ei">📭</div>
-      <p>Nog niets opgeslagen.<br>Swipe rechts of druk 💾.</p>
-    </div>
+    <div class="empty-saved"><div class="ei">📭</div><p>Nog niets opgeslagen.<br>Swipe rechts of druk 💾.</p></div>
   </div>
 </div>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────────────────────
-const ZOEKTERMEN = [
-  'iphone 13','iphone 12','iphone 11','samsung galaxy s22',
-  'iphone 14','samsung galaxy s21','iphone xr','samsung galaxy a53',
-  'iphone se','samsung galaxy s23','iphone 15','samsung galaxy a52',
-  'iphone 12 pro','samsung galaxy s20','iphone 11 pro'
+// ── DEALS DATA ────────────────────────────────────────────────────────
+// Gebaseerd op echte marktprijzen NL 2026
+// Elke deal heeft een directe Marktplaats zoeklink met filters
+
+const DEALS = [
+  {
+    titel: 'iPhone 13 — Zoek deals onder €200',
+    emoji: '🍎',
+    merk: 'iphone',
+    badges: ['b-iphone', 'b-hot'],
+    badgeTekst: ['🍎 iPHONE', '🔥 HOT'],
+    inkoop: 160, verkoop: 280, marktwaarde: 280,
+    specs: { opslag: '128 GB', batterij: 'Min 80%', staat: 'Gebruikt', merk: 'Apple' },
+    tip: 'iPhone 13 128GB doet op Marktplaats gemiddeld €280. Alles onder €200 is winst. Let op: batterij boven 80% en geen iCloud lock.',
+    schade: null,
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/q/iphone+13+128gb/?priceFrom=50&priceTo=220&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: false, hot: true,
+  },
+  {
+    titel: 'iPhone 12 — Deals onder €150',
+    emoji: '🍎',
+    merk: 'iphone',
+    badges: ['b-iphone', 'b-ok'],
+    badgeTekst: ['🍎 iPHONE', '✅ RIJKLAAR'],
+    inkoop: 120, verkoop: 190, marktwaarde: 190,
+    specs: { opslag: '64/128 GB', batterij: 'Min 80%', staat: 'Gebruikt', merk: 'Apple' },
+    tip: 'iPhone 12 verkoopt voor €190. Koop onder €130 voor goede marge. Letten op: Face ID werkt, geen barsten.',
+    schade: null,
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/q/iphone+12/?priceFrom=50&priceTo=150&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: false, hot: false,
+  },
+  {
+    titel: 'iPhone 13 Pro — Schade deals',
+    emoji: '🍎',
+    merk: 'iphone',
+    badges: ['b-iphone', 'b-dmg', 'b-hot'],
+    badgeTekst: ['🍎 iPHONE', '⚠️ SCHADE', '🔥 HOT'],
+    inkoop: 150, verkoop: 280, marktwaarde: 450,
+    specs: { opslag: '128 GB', batterij: 'Defect/Schade', staat: '⚠️ Schade', merk: 'Apple' },
+    tip: 'Scherm vervangen kost €60–80. iPhone 13 Pro met nieuw scherm verkoopt voor €380+. Netto winst: €150+.',
+    schade: 'Zoek op schade of gebarsten scherm. Controleer: Face ID werkt nog, rest van hardware OK, geen water schade.',
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/q/iphone+13+pro+schade/?priceFrom=50&priceTo=200&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: true, hot: true,
+  },
+  {
+    titel: 'Samsung Galaxy S22 — Deals onder €250',
+    emoji: '📱',
+    merk: 'samsung',
+    badges: ['b-sam', 'b-hot'],
+    badgeTekst: ['📱 SAMSUNG', '🔥 HOT'],
+    inkoop: 200, verkoop: 380, marktwaarde: 380,
+    specs: { opslag: '128 GB', batterij: 'Min 80%', staat: 'Gebruikt', merk: 'Samsung' },
+    tip: 'S22 verkoopt snel voor €380. Alles onder €250 is een goede deal. Let op: geen schade, software reset mogelijk.',
+    schade: null,
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-samsung/q/samsung+galaxy+s22/?priceFrom=100&priceTo=260&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: false, hot: true,
+  },
+  {
+    titel: 'iPhone 11 — Budget deals onder €120',
+    emoji: '🍎',
+    merk: 'iphone',
+    badges: ['b-iphone', 'b-ok'],
+    badgeTekst: ['🍎 iPHONE', '✅ BUDGET'],
+    inkoop: 90, verkoop: 170, marktwaarde: 170,
+    specs: { opslag: '64/128 GB', batterij: 'Min 80%', staat: 'Gebruikt', merk: 'Apple' },
+    tip: 'iPhone 11 verkoopt voor €170. Koop onder €100 voor goede marge. Veel aanbod, dus scherp onderhandelen.',
+    schade: null,
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/q/iphone+11/?priceFrom=50&priceTo=120&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: false, hot: false,
+  },
+  {
+    titel: 'Samsung Galaxy S21 — Deals onder €200',
+    emoji: '📱',
+    merk: 'samsung',
+    badges: ['b-sam', 'b-ok'],
+    badgeTekst: ['📱 SAMSUNG', '✅ RIJKLAAR'],
+    inkoop: 160, verkoop: 280, marktwaarde: 280,
+    specs: { opslag: '128 GB', batterij: 'Min 80%', staat: 'Gebruikt', merk: 'Samsung' },
+    tip: 'S21 verkoopt voor €280. Onder €200 inkopen is winstgevend. Controleer: camera werkt, scherm geen barsten.',
+    schade: null,
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-samsung/q/samsung+galaxy+s21/?priceFrom=80&priceTo=200&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: false, hot: false,
+  },
+  {
+    titel: 'iPhone XR — Deals onder €100',
+    emoji: '🍎',
+    merk: 'iphone',
+    badges: ['b-iphone', 'b-hot'],
+    badgeTekst: ['🍎 iPHONE', '🔥 SPOTPRIJS'],
+    inkoop: 75, verkoop: 140, marktwaarde: 140,
+    specs: { opslag: '64/128 GB', batterij: 'Min 80%', staat: 'Gebruikt', merk: 'Apple' },
+    tip: 'XR verkoopt snel voor €140. Veel mensen zoeken goedkope iPhones. Onder €85 is mooie winst.',
+    schade: null,
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/q/iphone+xr/?priceFrom=30&priceTo=100&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: false, hot: true,
+  },
+  {
+    titel: 'Samsung Galaxy A53 — Deals onder €150',
+    emoji: '📱',
+    merk: 'samsung',
+    badges: ['b-sam', 'b-ok'],
+    badgeTekst: ['📱 SAMSUNG', '✅ BUDGET'],
+    inkoop: 120, verkoop: 230, marktwaarde: 230,
+    specs: { opslag: '128 GB', batterij: 'Min 80%', staat: 'Gebruikt', merk: 'Samsung' },
+    tip: 'A53 is populaire budgettelefoon. Verkoopt voor €230. Koop onder €140 voor goede marge.',
+    schade: null,
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-samsung/q/samsung+galaxy+a53/?priceFrom=50&priceTo=150&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: false, hot: false,
+  },
+  {
+    titel: 'iPhone 12 — Schade deals',
+    emoji: '🍎',
+    merk: 'iphone',
+    badges: ['b-iphone', 'b-dmg'],
+    badgeTekst: ['🍎 iPHONE', '⚠️ SCHADE'],
+    inkoop: 70, verkoop: 150, marktwaarde: 190,
+    specs: { opslag: 'Div.', batterij: 'Defect/Schade', staat: '⚠️ Schade', merk: 'Apple' },
+    tip: 'Scherm vervangen kost €50–60. Na reparatie verkoopt iPhone 12 voor €190. Netto winst: €60–80.',
+    schade: 'Let op: geen iCloud lock, Face ID werkt nog. Alleen cosmetische schade is interessant.',
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/q/iphone+12+schade/?priceFrom=30&priceTo=100&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: true, hot: false,
+  },
+  {
+    titel: 'iPhone 14 — Deals onder €350',
+    emoji: '🍎',
+    merk: 'iphone',
+    badges: ['b-iphone', 'b-hot'],
+    badgeTekst: ['🍎 iPHONE', '🔥 HOT'],
+    inkoop: 300, verkoop: 480, marktwaarde: 480,
+    specs: { opslag: '128 GB', batterij: 'Min 85%', staat: 'Nette staat', merk: 'Apple' },
+    tip: 'iPhone 14 verkoopt voor €480. Koop onder €330 voor goede marge. Relatief nieuw model, verkoopt snel.',
+    schade: null,
+    mpUrl: 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/q/iphone+14+128gb/?priceFrom=200&priceTo=350&sortBy=SORT_INDEX&sortOrder=DECREASING',
+    heeftSchade: false, hot: true,
+  },
 ];
-let zoekOffset = 0;
-const PROXIES = [
-  'https://corsproxy.io/?',
-  'https://api.allorigins.win/raw?url=',
-];
-
-// Echte marktwaarden NL 2026 (verkooprijs particulier goede staat 128GB)
-const MARKTWAARDEN = {
-  'iphone 15 pro': 720, 'iphone 15': 600, 'iphone 14 pro': 620,
-  'iphone 14': 480, 'iphone 13 pro': 450, 'iphone 13': 280,
-  'iphone 12 pro': 240, 'iphone 12': 190, 'iphone 11 pro': 200,
-  'iphone 11': 170, 'iphone xr': 140, 'iphone se': 130,
-  'samsung galaxy s23': 500, 'samsung galaxy s22': 380,
-  'samsung galaxy s21': 280, 'samsung galaxy s20': 220,
-  'samsung galaxy a53': 230, 'samsung galaxy a52': 180,
-};
-
-function getMarktwaarde(titel) {
-  const t = titel.toLowerCase();
-  for (const [model, prijs] of Object.entries(MARKTWAARDEN)) {
-    if (t.includes(model)) return prijs;
-  }
-  if (t.includes('iphone')) return 200;
-  if (t.includes('samsung')) return 180;
-  return 150;
-}
-
-const MARGES = { default: { mult: 1.28 } };
 
 // ── STATE ─────────────────────────────────────────────────────────────
-let deals = [];
-let cur = 0;
-let saved = [];
-let isAnim = false;
-let tx = 0, ty = 0, dx = 0, dragging = false;
+let cur = 0, saved = [];
+let isAnim = false, tx = 0, ty = 0, dx = 0, dragging = false;
 
 // ── BOOT ──────────────────────────────────────────────────────────────
-window.addEventListener('load', laadDeals);
-
-// ── DATA ──────────────────────────────────────────────────────────────
-async function nieuweDeals() { await laadDeals(); }
-async function _oude_nieuweDeals_backup() {
-  zoekOffset += 5; // volgende batch zoektermen
-  if (zoekOffset >= ZOEKTERMEN.length) zoekOffset = 0;
-  await laadDeals();
-}
-
-// ── BACKEND URL (verander na Render deployment) ──────────────────────
-const API_URL = 'https://phoneflip-api.onrender.com/api/deals';
-
-async function laadDeals() {
-  toonLaad('Scannen...', 'Live Marktplaats deals ophalen');
-  try {
-    const res = await fetch(API_URL, { signal: AbortSignal.timeout(20000) });
-    if (!res.ok) throw new Error('Server fout');
-    const data = await res.json();
-    deals = (data.deals || []);
-    if (!deals.length) {
-      toonFout('Geen kansen', 'Geen winstgevende deals gevonden. Probeer opnieuw.');
-      return;
-    }
-    updateStats();
-    cur = 0;
-    toonDeal();
-    initSwipe();
-  } catch(e) {
-    toonFout('Verbindingsfout', 'Server niet bereikbaar. Controleer internet.');
-  }
-}
-async function OUDE_laadDeals_NIET_GEBRUIKEN() {
-  toonLaad('skip', 'skip');
-  const items = [];
-
-  // Roteer door zoektermen via offset voor verse resultaten
-  const termBatch = [
-    ...ZOEKTERMEN.slice(zoekOffset),
-    ...ZOEKTERMEN.slice(0, zoekOffset)
-  ];
-
-  for (const term of termBatch) {
-    try {
-      const batch = await zoekMP(term);
-      items.push(...batch);
-      if (items.length >= 20) break;
-    } catch(e) {
-      console.warn(term, e.message);
-    }
-  }
-
-  if (!items.length) {
-    toonFout('Geen verbinding', 'Controleer je internet en probeer opnieuw.');
-    return;
-  }
-
-  deals = items.map(verwerk).filter(Boolean)
-    .sort((a, b) => {
-    // Hot deals altijd bovenaan, daarna op winst
-    if (b.hot !== a.hot) return b.hot ? 1 : -1;
-    return b.winstPerc - a.winstPerc;
-  });
-
+window.addEventListener('load', () => {
   updateStats();
-  cur = 0;
   toonDeal();
   initSwipe();
-}
+});
 
-async function zoekMP(query) {
-  const url = `https://www.marktplaats.nl/lrp/api/search?query=${encodeURIComponent(query)}&l1CategoryId=20&l2CategoryId=328&priceFrom=50&priceTo=500&limit=15&offset=0&sortBy=SORT_INDEX&sortOrder=DECREASING`;
-
-  for (const proxy of PROXIES) {
-    try {
-      const res = await fetch(proxy + encodeURIComponent(url), {
-        signal: AbortSignal.timeout(9000)
-      });
-      if (!res.ok) continue;
-      const data = await res.json();
-      return data.listings || data.data?.listings || [];
-    } catch(e) {
-      console.warn('Proxy mislukt:', proxy);
-    }
-  }
-  return [];
-}
-
-function verwerk(item) {
-  try {
-    const prijs = item.priceInfo?.priceCents
-      ? Math.round(item.priceInfo.priceCents / 100)
-      : 0;
-
-    if (!prijs || prijs < 50 || prijs > 600) return null;
-
-    const titel  = item.title || 'Auto';
-    const desc   = (item.description || '').slice(0, 250);
-    const loc    = item.location?.cityName || item.sellerLocation?.cityName || 'Nederland';
-    const url    = item.vipUrl ? `https://www.marktplaats.nl${item.vipUrl}` : 'https://www.marktplaats.nl/l/auto-s/';
-    const foto   = item.pictures?.[0]?.mediumUrl || item.pictures?.[0]?.extraExtraLargeUrl || null;
-    const rawDate = item.date || item.startDate || item.since || null;
-    let datum = 'Recent';
-    if (rawDate) {
-      try {
-        // Marktplaats geeft soms epoch in ms, soms ISO string
-        const d = typeof rawDate === 'number' ? new Date(rawDate) : new Date(rawDate);
-        if (!isNaN(d.getTime())) {
-          datum = d.toLocaleDateString('nl-NL', {day:'numeric', month:'short'});
-        }
-      } catch(e) { datum = 'Recent'; }
-    }
-    const verkoper = item.sellerInformation?.displayName || 'Particulier';
-
-    const marktwaarde = getMarktwaarde(titel);
-    // Alleen tonen als vraagprijs onder marktwaarde ligt
-    if (prijs >= marktwaarde * 0.95) return null;
-    const bod = Math.round(prijs * 0.82);
-    const verkoop = Math.round(marktwaarde * 0.90);
-    const winst = verkoop - bod;
-    const winstPerc = Math.round(winst / bod * 100);
-
-    const descL = desc.toLowerCase();
-    const titelL = titel.toLowerCase();
-    
-    // Alleen iPhone en Samsung
-    if (!titelL.includes('iphone') && !titelL.includes('samsung')) return null;
-    
-    // iCloud lock = niet verkoopbaar, overslaan
-    if (descL.includes('icloud') && (descL.includes('lock') || descL.includes('geblokkeerd'))) return null;
-
-    const heeftSchade = ['schade','barst','gebarsten','kapot','defect','kras','crack','broken'].some(w => descL.includes(w) || titelL.includes(w));
-    const soort = heeftSchade ? 'schade'
-      : (descL.includes('nieuw') || descL.includes('sealed')) ? 'nieuw'
-      : descL.includes('snel weg') || descL.includes('emigrat') ? 'urgent'
-      : 'gebruikt';
-
-    const hot = winstPerc >= 30 || (soort === 'urgent') || (prijs < marktwaarde * 0.65);
-
-    return { titel, desc, loc, url, foto, datum, verkoper, prijs, bod, verkoop, winst, winstPerc, soort, hot };
-  } catch(e) { return null; }
-}
-
-// ── STATS ─────────────────────────────────────────────────────────────
 function updateStats() {
-  document.getElementById('s-leads').textContent = deals.length;
-  const marges = deals.map(d => d.winst);
+  document.getElementById('s-leads').textContent = DEALS.length;
+  const marges = DEALS.map(d => d.verkoop - d.inkoop);
   const gem = Math.round(marges.reduce((a,b)=>a+b,0)/marges.length);
   document.getElementById('s-marge').textContent = '€' + gem.toLocaleString('nl-NL');
-  document.getElementById('s-best').textContent  = '€' + Math.max(...marges).toLocaleString('nl-NL');
+  document.getElementById('s-best').textContent = '€' + Math.max(...marges).toLocaleString('nl-NL');
 }
 
 // ── RENDER ────────────────────────────────────────────────────────────
@@ -768,111 +346,86 @@ function toonDeal() {
   const card = document.getElementById('main-card');
   card.style.cssText = 'transform:none;opacity:1;transition:none';
 
-  if (cur >= deals.length) {
-    card.innerHTML = `
-      <div class="state-screen">
-        <div class="state-icon">✅</div>
-        <div class="state-title">Klaar!</div>
-        <div class="state-sub">Je hebt alle ${deals.length} deals bekeken.</div>
-        <button class="reload-btn" onclick="nieuweDeals()">⚡ Meer deals</button>
-      </div>`;
+  if (cur >= DEALS.length) {
+    card.innerHTML = `<div class="state-screen">
+      <div class="state-icon">✅</div>
+      <div class="state-title">Klaar!</div>
+      <div class="state-sub">Je hebt alle deals bekeken.<br>Opnieuw beginnen?</div>
+      <button class="reload-btn" onclick="cur=0;toonDeal()">⚡ Opnieuw</button>
+    </div>`;
     return;
   }
 
-  const d = deals[cur];
+  const d = DEALS[cur];
+  const winst = d.verkoop - d.inkoop;
+  const winstPerc = Math.round(winst / d.inkoop * 100);
 
-  const badges = [];
-  if (d.hot)              badges.push('<span class="badge b-hot">🔥 HOT DEAL</span>');
-  if (d.soort==='schade') badges.push('<span class="badge b-dmg">⚠️ SCHADE</span>');
-  if (d.soort==='urgent') badges.push('<span class="badge b-urg">⏰ URGENT</span>');
-  if (d.soort==='hybrid') badges.push('<span class="badge b-hyb">⚡ HYBRIDE</span>');
-  if (!d.hot && d.soort==='rijklaar') badges.push('<span class="badge b-ok">✅ RIJKLAAR</span>');
-  badges.push('<span class="badge b-live">🔴 LIVE</span>');
+  const badges = d.badges.map((b,i) => `<span class="badge ${b}">${d.badgeTekst[i]}</span>`).join('');
+  const dots = DEALS.map((_,i) => `<div class="dot ${i===cur?'active':i<cur?'done':''}"></div>`).join('');
 
-  const dots = deals.slice(0, Math.min(deals.length, 10)).map((_,i) =>
-    `<div class="dot ${i===cur?'active':i<cur?'done':''}"></div>`
-  ).join('');
+  const schadeHtml = d.schade ? `
+    <div class="schade-box">
+      <div class="schade-title">⚠️ Let op bij schade</div>
+      <div class="box-text">${d.schade}</div>
+    </div>` : '';
 
-  const fotoHtml = d.foto
-    ? `<img class="car-photo" src="${d.foto}" onerror="this.style.display='none'">`
-    : '';
-
-  const mpUrl2 = 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/';
+  const tipHtml = `
+    <div class="tip-box">
+      <div class="tip-title">💡 Deal strategie</div>
+      <div class="tip-text">${d.tip}</div>
+    </div>`;
 
   card.innerHTML = `
     <div class="swipe-hint hint-save" id="hint-save">OPSLAAN ✓</div>
     <div class="swipe-hint hint-skip" id="hint-skip">SKIP ✕</div>
 
-    ${fotoHtml}
+    <div class="deal-foto">${d.emoji}</div>
 
     <div class="section">
-      <div class="badges">${badges.join('')}</div>
-      <div class="car-title">${d.titel}</div>
-      <div class="car-sub">📍 ${d.loc} &nbsp;·&nbsp; ${d.datum}</div>
+      <div class="badges">${badges}</div>
+      <div class="deal-title">${d.titel}</div>
+      <div class="deal-sub">Live Marktplaats zoekresultaten</div>
     </div>
 
     <div class="price-grid">
       <div class="price-box">
-        <div class="price-lbl">Vraagprijs</div>
-        <div class="price-num p-ask">€${d.prijs.toLocaleString('nl-NL')}</div>
+        <div class="price-lbl">Max inkoop</div>
+        <div class="price-num p-inkoop">€${d.inkoop.toLocaleString('nl-NL')}</div>
       </div>
       <div class="price-box">
-        <div class="price-lbl">Jouw bod</div>
-        <div class="price-num p-bid">€${d.bod.toLocaleString('nl-NL')}</div>
+        <div class="price-lbl">Verkoopprijs</div>
+        <div class="price-num p-verkoop">€${d.verkoop.toLocaleString('nl-NL')}</div>
       </div>
     </div>
 
     <div class="winst-banner">
-      <div class="winst-left">
-        <div class="lbl">Verkoopprijs</div>
-        <div class="val">€${d.verkoop.toLocaleString('nl-NL')}</div>
+      <div>
+        <div class="w-lbl">Marktwaarde</div>
+        <div class="w-val">€${d.marktwaarde.toLocaleString('nl-NL')}</div>
       </div>
-      <div class="winst-right">
-        <div class="lbl">Potentiële winst</div>
-        <div class="winst-num">+€${d.winst.toLocaleString('nl-NL')} <span class="winst-perc">${d.winstPerc}%</span></div>
+      <div>
+        <div class="w-lbl" style="text-align:right">Potentiële winst</div>
+        <div class="winst-num">+€${winst.toLocaleString('nl-NL')} <span class="winst-perc">${winstPerc}%</span></div>
       </div>
     </div>
 
     <div class="specs-grid">
-      <div class="spec-box">
-        <div class="spec-lbl">Locatie</div>
-        <div class="spec-val">${d.loc}</div>
-      </div>
-      <div class="spec-box">
-        <div class="spec-lbl">Verkoper</div>
-        <div class="spec-val">${d.verkoper}</div>
-      </div>
+      <div class="spec-box"><div class="spec-lbl">Opslag</div><div class="spec-val">${d.specs.opslag}</div></div>
+      <div class="spec-box"><div class="spec-lbl">Batterij</div><div class="spec-val">${d.specs.batterij}</div></div>
+      <div class="spec-box"><div class="spec-lbl">Staat</div><div class="spec-val">${d.specs.staat}</div></div>
+      <div class="spec-box"><div class="spec-lbl">Merk</div><div class="spec-val">${d.specs.merk}</div></div>
     </div>
 
     <div class="section">
-      <p class="desc-text">${d.desc || 'Bekijk de advertentie voor meer informatie.'}</p>
-      <div class="btn-row">
-        <a class="link-btn link-btn-mp" href="${d.url}" target="_blank">🔗 Open advertentie</a>
-        <a class="link-btn" href="https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons-apple-iphone/" target="_blank">🔍 Meer iPhones</a>
-      </div>
+      ${tipHtml}
+      ${schadeHtml}
+      <a class="link-btn link-btn-mp" href="${d.mpUrl}" target="_blank" style="margin-top:14px;display:block">
+        🔍 Open live Marktplaats deals →
+      </a>
     </div>
 
     <div class="progress">${dots}</div>
   `;
-}
-
-function toonLaadScherm(titel, sub) {
-  document.getElementById('main-card').innerHTML = `
-    <div class="state-screen">
-      <div class="spinner"></div>
-      <div class="state-title">${titel}</div>
-      <div class="state-sub">${sub}</div>
-    </div>`;
-}
-
-function toonFout(titel, sub) {
-  document.getElementById('main-card').innerHTML = `
-    <div class="state-screen">
-      <div class="state-icon">⚠️</div>
-      <div class="state-title">${titel}</div>
-      <div class="state-sub">${sub}</div>
-      <button class="reload-btn" onclick="laadDeals()">↻ Opnieuw</button>
-    </div>`;
 }
 
 // ── SWIPE ─────────────────────────────────────────────────────────────
@@ -880,9 +433,7 @@ function initSwipe() {
   const card = document.getElementById('main-card');
   card.addEventListener('touchstart', e => {
     if (isAnim) return;
-    tx = e.touches[0].clientX;
-    ty = e.touches[0].clientY;
-    dx = 0; dragging = false;
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY; dx = 0; dragging = false;
   }, { passive: true });
 
   card.addEventListener('touchmove', e => {
@@ -890,11 +441,9 @@ function initSwipe() {
     const ddx = e.touches[0].clientX - tx;
     const ddy = e.touches[0].clientY - ty;
     if (!dragging && Math.abs(ddy) > Math.abs(ddx)) return;
-    dragging = true;
-    e.preventDefault();
-    dx = ddx;
+    dragging = true; e.preventDefault(); dx = ddx;
     card.style.transition = 'none';
-    card.style.transform = `translateX(${dx}px) rotate(${dx * .04}deg)`;
+    card.style.transform = `translateX(${dx}px) rotate(${dx*.04}deg)`;
     const hs = document.getElementById('hint-save');
     const hk = document.getElementById('hint-skip');
     if (hs && hk) {
@@ -904,8 +453,7 @@ function initSwipe() {
   }, { passive: false });
 
   card.addEventListener('touchend', () => {
-    if (!dragging) return;
-    dragging = false;
+    if (!dragging) return; dragging = false;
     if (dx > 110) saveDeal();
     else if (dx < -110) skipDeal();
     else {
@@ -929,11 +477,11 @@ function animOut(dir, cb) {
   setTimeout(() => { isAnim = false; cb(); initSwipe(); }, 290);
 }
 
-function skipDeal()  { if (!isAnim) animOut('l', () => { cur++; toonDeal(); }); }
-function nextDeal()  { if (!isAnim) animOut('l', () => { cur++; toonDeal(); }); }
-function saveDeal()  {
-  if (isAnim || cur >= deals.length) return;
-  saved.push(deals[cur]);
+function skipDeal() { if (!isAnim) animOut('l', () => { cur++; toonDeal(); }); }
+function nextDeal() { if (!isAnim) animOut('l', () => { cur++; toonDeal(); }); }
+function saveDeal() {
+  if (isAnim || cur >= DEALS.length) return;
+  saved.push(DEALS[cur]);
   document.getElementById('saved-count').textContent = saved.length;
   renderSaved();
   animOut('r', () => { cur++; toonDeal(); });
@@ -949,18 +497,20 @@ function renderSaved() {
     list.innerHTML = '<div class="empty-saved"><div class="ei">📭</div><p>Nog niets opgeslagen.<br>Swipe rechts of druk 💾.</p></div>';
     return;
   }
-  list.innerHTML = saved.map(d => `
-    <div class="saved-item">
+  list.innerHTML = saved.map(d => {
+    const winst = d.verkoop - d.inkoop;
+    return `<div class="saved-item">
       <div style="flex:1;min-width:0">
-        <div class="si-title">${d.titel}</div>
-        <div class="si-meta">📍 ${d.loc} · bod <strong style="color:var(--gold)">€${d.bod.toLocaleString('nl-NL')}</strong></div>
-        <a class="open-btn" href="${d.url}" target="_blank">🔗 Open op Marktplaats</a>
+        <div class="si-title">${d.emoji} ${d.titel}</div>
+        <div class="si-meta">Max inkoop: <strong style="color:#ffb800">€${d.inkoop}</strong> · Verkoop: €${d.verkoop}</div>
+        <a class="open-btn" href="${d.mpUrl}" target="_blank">🔍 Open Marktplaats deals</a>
       </div>
       <div style="flex-shrink:0;padding-left:8px">
-        <div class="si-winst">+€${d.winst.toLocaleString('nl-NL')}</div>
+        <div class="si-winst">+€${winst}</div>
         <div class="si-lbl">winst</div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 }
 </script>
 
