@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>PhoneFlip</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,294 +14,218 @@
 @font-face { font-family: 'Bebas Neue'; font-display: swap; }
 @font-face { font-family: 'DM Sans'; font-display: swap; }
 
-- { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
 :root {
-–bg: #07070f;
-–card: #0e0e1c;
-–card2: #141428;
+–bg:     #07070f;
+–card:   #0e0e1c;
+–card2:  #141428;
 –border: #222238;
-–green: #00e87a;
-–red: #ff3c5a;
-–gold: #ffb800;
-–blue: #4d8dff;
+–green:  #00e87a;
+–red:    #ff3c5a;
+–gold:   #ffb800;
+–blue:   #4d8dff;
 –purple: #a855f7;
-–text: #ffffff;
-–muted: #7777aa;
+–text:   #ffffff;
+–muted:  #7777aa;
 }
-
-/* FORCE DARK */
-html { background: #07070f !important; color-scheme: dark; }
-body { background: #07070f !important; }
-.main-card { background: #0e0e1c !important; }
-.section { background: #0e0e1c !important; }
-.price-box { background: #0e0e1c !important; }
-.spec-box { background: #0e0e1c !important; }
-.stat { background: #0e0e1c !important; }
 
 html, body {
 height: 100%; height: 100dvh;
 overflow: hidden;
+background: #07070f;
+color: #ffffff;
 font-family: ‘DM Sans’, -apple-system, sans-serif;
-color: var(–text);
 }
 
 body {
 display: flex; flex-direction: column;
 max-width: 430px; margin: 0 auto;
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-bottom);
+padding-top: env(safe-area-inset-top, 0px);
+padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* TOPBAR */
+/* ── TOPBAR ── */
 .topbar {
 display: flex; align-items: center; justify-content: space-between;
-padding: 14px 20px 8px; flex-shrink: 0;
-background: var(–bg);
+padding: 14px 20px 8px; flex-shrink: 0; background: #07070f;
 }
-
 .logo {
 font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif;
 font-size: 34px; letter-spacing: 2px;
 background: linear-gradient(120deg, #a855f7, #4d8dff);
--webkit-background-clip: text; -webkit-text-fill-color: transparent;
-background-clip: text;
+-webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
-
 .top-right { display: flex; gap: 10px; align-items: center; }
-
 .live-badge {
 display: flex; align-items: center; gap: 6px;
-background: rgba(168,85,247,.1);
-border: 1.5px solid rgba(168,85,247,.3);
+background: rgba(168,85,247,.12); border: 1.5px solid rgba(168,85,247,.3);
 border-radius: 30px; padding: 7px 14px;
-font-size: 13px; font-weight: 700; color: var(–purple);
+font-size: 13px; font-weight: 700; color: #a855f7; letter-spacing: .5px;
 }
-
 .live-dot {
 width: 8px; height: 8px; border-radius: 50%;
-background: var(–purple); box-shadow: 0 0 6px var(–purple);
+background: #a855f7; box-shadow: 0 0 6px #a855f7;
 animation: blink 1.5s ease-in-out infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
-
 .saved-badge {
-background: var(–card2); border: 1.5px solid var(–border);
+background: #141428; border: 1.5px solid #222238;
 border-radius: 30px; padding: 7px 16px;
-font-size: 14px; font-weight: 700; cursor: pointer; color: var(–text);
+font-size: 14px; font-weight: 700; cursor: pointer; color: #ffffff;
 }
 
-/* STATS */
+/* ── STATS ── */
 .stats {
 display: grid; grid-template-columns: repeat(3,1fr);
-gap: 8px; padding: 0 20px 10px; flex-shrink: 0;
-background: var(–bg);
+gap: 8px; padding: 0 20px 10px; flex-shrink: 0; background: #07070f;
 }
+.stat { background: #0e0e1c; border: 1.5px solid #222238; border-radius: 16px; padding: 10px 6px; text-align: center; }
+.stat-label { font-size: 10px; color: #7777aa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+.stat-value { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 22px; color: #a855f7; }
 
-.stat {
-background: var(–card) !important;
-border: 1.5px solid var(–border);
-border-radius: 16px; padding: 10px 6px; text-align: center;
-}
-
-.stat-label { font-size: 10px; color: var(–muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
-.stat-value { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 22px; color: var(–purple); }
-
-/* CARD AREA */
-.card-area { flex: 1; min-height: 0; position: relative; padding: 0 16px; background: var(–bg); }
-
+/* ── CARD AREA ── */
+.card-area { flex: 1; min-height: 0; position: relative; padding: 0 16px; background: #07070f; }
 .shadow-card {
 position: absolute; inset: 0 16px;
-background: var(–card); border: 1.5px solid var(–border);
-border-radius: 24px; transform-origin: bottom center;
+background: #0e0e1c; border: 1.5px solid #222238; border-radius: 24px; transform-origin: bottom center;
 }
 .shadow-card:nth-child(1) { transform: translateY(8px) scale(.96); opacity: .4; }
 .shadow-card:nth-child(2) { transform: translateY(16px) scale(.92); opacity: .2; }
-
 .main-card {
 position: absolute; inset: 0;
-background: var(–card) !important;
-border: 1.5px solid var(–border);
-border-radius: 24px;
-overflow-y: scroll; overflow-x: hidden;
--webkit-overflow-scrolling: touch;
-scrollbar-width: none;
+background: #0e0e1c; border: 1.5px solid #222238; border-radius: 24px;
+overflow-y: scroll; overflow-x: hidden; -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
 .main-card::-webkit-scrollbar { display: none; }
 
-/* SWIPE HINTS */
+/* Swipe hints */
 .swipe-hint {
 position: absolute; top: 20px; z-index: 20;
 padding: 8px 16px; border-radius: 10px;
 font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif;
-font-size: 22px; letter-spacing: 1px;
-opacity: 0; pointer-events: none;
+font-size: 22px; letter-spacing: 1px; opacity: 0; pointer-events: none;
 }
-.hint-save { left: 16px; background: rgba(0,232,122,.15); border: 2px solid var(–green); color: var(–green); }
-.hint-skip { right: 16px; background: rgba(255,60,90,.15); border: 2px solid var(–red); color: var(–red); }
+.hint-save { left: 16px; background: rgba(0,232,122,.15); border: 2px solid #00e87a; color: #00e87a; }
+.hint-skip { right: 16px; background: rgba(255,60,90,.15); border: 2px solid #ff3c5a; color: #ff3c5a; }
 
-/* FOTO */
-.phone-photo {
-width: 100%; height: 220px;
-object-fit: cover; object-position: center;
-border-bottom: 1.5px solid var(–border);
-display: block; background: var(–card2);
-}
+/* ── CARD CONTENT ── */
+.phone-photo { width: 100%; height: 220px; object-fit: cover; object-position: center; border-bottom: 1.5px solid #222238; display: block; background: #141428; }
+.no-photo { width: 100%; height: 160px; display: flex; align-items: center; justify-content: center; font-size: 80px; background: #141428; border-bottom: 1.5px solid #222238; }
 
-.no-photo {
-width: 100%; height: 180px;
-display: flex; align-items: center; justify-content: center;
-font-size: 72px; background: var(–card2);
-border-bottom: 1.5px solid var(–border);
-}
+.section { padding: 16px 18px; border-bottom: 1.5px solid #222238; background: #0e0e1c; }
 
-/* SECTIONS */
-.section {
-padding: 16px 18px;
-border-bottom: 1.5px solid var(–border);
-background: var(–card) !important;
-}
-
-/* BADGES */
 .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 .badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px; text-transform: uppercase; letter-spacing: .4px; }
-.b-hot  { background: rgba(255,60,90,.15);   color: var(–red);    border: 1.5px solid rgba(255,60,90,.3); }
-.b-dmg  { background: rgba(255,184,0,.12);   color: var(–gold);   border: 1.5px solid rgba(255,184,0,.3); }
-.b-new  { background: rgba(0,232,122,.08);   color: var(–green);  border: 1.5px solid rgba(0,232,122,.2); }
-.b-ok   { background: rgba(0,232,122,.08);   color: var(–green);  border: 1.5px solid rgba(0,232,122,.2); }
-.b-urg  { background: rgba(255,130,60,.12);  color: #ff9060;       border: 1.5px solid rgba(255,130,60,.3); }
-.b-live { background: rgba(168,85,247,.1);   color: var(–purple); border: 1.5px solid rgba(168,85,247,.25); }
-.b-iphone  { background: rgba(77,141,255,.1); color: var(–blue);  border: 1.5px solid rgba(77,141,255,.3); }
-.b-samsung { background: rgba(0,180,255,.1);  color: #00b4ff;      border: 1.5px solid rgba(0,180,255,.3); }
+.b-hot    { background: rgba(255,60,90,.15);   color: #ff3c5a; border: 1.5px solid rgba(255,60,90,.3); }
+.b-dmg    { background: rgba(255,184,0,.12);   color: #ffb800; border: 1.5px solid rgba(255,184,0,.3); }
+.b-new    { background: rgba(0,232,122,.08);   color: #00e87a; border: 1.5px solid rgba(0,232,122,.2); }
+.b-ok     { background: rgba(0,232,122,.08);   color: #00e87a; border: 1.5px solid rgba(0,232,122,.2); }
+.b-live   { background: rgba(168,85,247,.1);   color: #a855f7; border: 1.5px solid rgba(168,85,247,.25); }
+.b-iphone { background: rgba(77,141,255,.1);   color: #4d8dff; border: 1.5px solid rgba(77,141,255,.3); }
+.b-sam    { background: rgba(0,180,255,.1);    color: #00b4ff; border: 1.5px solid rgba(0,180,255,.3); }
+.b-goedkoop { background: rgba(0,232,122,.12); color: #00e87a; border: 1.5px solid rgba(0,232,122,.3); }
 
-/* TITLE */
-.phone-title { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 28px; letter-spacing: .5px; line-height: 1.15; margin-bottom: 4px; }
-.phone-sub { font-size: 14px; color: var(–muted); }
+.phone-title { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 26px; letter-spacing: .5px; line-height: 1.2; margin-bottom: 5px; }
+.phone-sub { font-size: 14px; color: #7777aa; }
 
-/* PRICES */
-.price-grid {
-display: grid; grid-template-columns: 1fr 1fr;
-gap: 1px; background: var(–border);
-border-bottom: 1.5px solid var(–border);
+/* Marktwaarde vergelijking */
+.marktwaarde-bar {
+display: flex; align-items: center; justify-content: space-between;
+padding: 12px 18px; background: rgba(0,232,122,.04);
+border-bottom: 1.5px solid rgba(0,232,122,.1);
 }
-.price-box { background: var(–card) !important; padding: 16px 18px; }
-.price-lbl { font-size: 11px; color: var(–muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
-.price-num { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 34px; line-height: 1; }
-.p-ask { color: var(–text); }
-.p-bid { color: var(–gold); }
+.mv-item { text-align: center; }
+.mv-lbl { font-size: 9px; color: #7777aa; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; }
+.mv-val { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 20px; }
+.mv-ask { color: #ffffff; }
+.mv-markt { color: #7777aa; }
+.mv-sell { color: #00e87a; }
+.mv-divider { color: #222238; font-size: 24px; }
 
-/* WINST BANNER */
+/* Prijzen */
+.price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #222238; border-bottom: 1.5px solid #222238; }
+.price-box { background: #0e0e1c; padding: 16px 18px; }
+.price-lbl { font-size: 11px; color: #7777aa; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+.price-num { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 34px; line-height: 1; }
+.p-ask { color: #ffffff; }
+.p-bid { color: #ffb800; }
+
+/* Winst banner */
 .winst-banner {
 display: flex; align-items: center; justify-content: space-between;
 padding: 14px 18px;
 background: linear-gradient(135deg, rgba(168,85,247,.07), rgba(77,141,255,.04));
 border-bottom: 1.5px solid rgba(168,85,247,.12);
 }
-.w-lbl { font-size: 11px; color: var(–muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; }
-.w-val { font-size: 15px; color: var(–muted); }
-.winst-num { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 36px; color: var(–green); text-align: right; line-height: 1; }
+.w-lbl { font-size: 11px; color: #7777aa; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 3px; }
+.w-val { font-size: 15px; color: #7777aa; }
+.winst-num { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 36px; color: #00e87a; text-align: right; line-height: 1; }
 .winst-perc { font-size: 16px; opacity: .6; }
 
-/* SPECS */
-.specs-grid {
-display: grid; grid-template-columns: 1fr 1fr;
-gap: 1px; background: var(–border);
-border-bottom: 1.5px solid var(–border);
-}
-.spec-box { background: var(–card) !important; padding: 13px 18px; }
-.spec-lbl { font-size: 10px; color: var(–muted); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+/* Specs */
+.specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #222238; border-bottom: 1.5px solid #222238; }
+.spec-box { background: #0e0e1c; padding: 13px 18px; }
+.spec-lbl { font-size: 10px; color: #7777aa; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
 .spec-val { font-size: 15px; font-weight: 600; }
 
-/* SCHADE SECTIE */
-.schade-box {
-margin: 14px 0 0;
-background: rgba(255,184,0,.06);
-border: 1.5px solid rgba(255,184,0,.2);
-border-radius: 12px;
-padding: 12px 14px;
-}
-.schade-title { font-size: 11px; color: var(–gold); text-transform: uppercase; letter-spacing: .8px; font-weight: 700; margin-bottom: 5px; }
-.schade-text { font-size: 13px; color: var(–muted); line-height: 1.6; }
+/* Schade box */
+.schade-box { margin-top: 12px; background: rgba(255,184,0,.06); border: 1.5px solid rgba(255,184,0,.2); border-radius: 12px; padding: 12px 14px; }
+.schade-title { font-size: 11px; color: #ffb800; text-transform: uppercase; letter-spacing: .8px; font-weight: 700; margin-bottom: 5px; }
+.schade-text { font-size: 13px; color: #7777aa; line-height: 1.6; }
 
-/* DESC */
-.desc-text { font-size: 14px; color: var(–muted); line-height: 1.7; }
+/* Deal tip box */
+.tip-box { margin-top: 12px; background: rgba(0,232,122,.05); border: 1.5px solid rgba(0,232,122,.15); border-radius: 12px; padding: 12px 14px; }
+.tip-title { font-size: 11px; color: #00e87a; text-transform: uppercase; letter-spacing: .8px; font-weight: 700; margin-bottom: 5px; }
+.tip-text { font-size: 13px; color: #7777aa; line-height: 1.6; }
 
-/* LINK BUTTONS */
+.desc-text { font-size: 14px; color: #7777aa; line-height: 1.7; }
+
 .btn-row { display: flex; gap: 10px; margin-top: 14px; }
-.link-btn {
-flex: 1; text-align: center;
-background: var(–card2); border: 1.5px solid var(–border);
-border-radius: 12px; padding: 13px 8px;
-font-size: 13px; font-weight: 700; color: var(–muted);
-text-decoration: none; transition: all .15s;
-}
+.link-btn { flex: 1; text-align: center; background: #141428; border: 1.5px solid #222238; border-radius: 12px; padding: 13px 8px; font-size: 13px; font-weight: 700; color: #7777aa; text-decoration: none; }
 .link-btn:active { transform: scale(.96); }
-.link-btn-mp { color: var(–purple); border-color: rgba(168,85,247,.3); background: rgba(168,85,247,.07); }
+.link-btn-mp { color: #a855f7; border-color: rgba(168,85,247,.3); background: rgba(168,85,247,.07); }
 
-/* PROGRESS */
-.progress { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 14px; background: var(–card); }
-.dot { width: 7px; height: 7px; border-radius: 50%; background: var(–border); transition: all .25s; }
-.dot.active { background: var(–purple); transform: scale(1.5); box-shadow: 0 0 6px var(–purple); }
-.dot.done { background: var(–muted); }
+.progress { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 14px; background: #0e0e1c; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #222238; transition: all .25s; }
+.dot.active { background: #a855f7; transform: scale(1.5); box-shadow: 0 0 6px #a855f7; }
+.dot.done { background: #7777aa; }
 
-/* ACTIONS */
+/* ── ACTIONS ── */
 .actions {
 display: grid; grid-template-columns: 1fr 1.6fr 1fr;
-gap: 12px; padding: 12px 20px 16px; flex-shrink: 0;
-background: var(–bg);
+gap: 12px; padding: 12px 20px 16px; flex-shrink: 0; background: #07070f;
 }
-
-.action-btn {
-border: none; border-radius: 20px; cursor: pointer;
-display: flex; flex-direction: column; align-items: center;
-justify-content: center; gap: 5px;
-font-family: ‘DM Sans’, sans-serif; transition: all .15s;
-}
+.action-btn { border: none; border-radius: 20px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; font-family: ‘DM Sans’, sans-serif; transition: transform .15s; }
 .action-btn:active { transform: scale(.90); }
-
-.btn-skip { background: rgba(255,60,90,.1); border: 1.5px solid rgba(255,60,90,.25); color: var(–red); padding: 16px 8px; }
+.btn-skip { background: rgba(255,60,90,.1); border: 1.5px solid rgba(255,60,90,.25); color: #ff3c5a; padding: 16px 8px; }
 .btn-save { background: linear-gradient(135deg, #a855f7, #4d8dff); color: #fff; padding: 18px 8px; font-weight: 800; box-shadow: 0 6px 28px rgba(168,85,247,.3); }
-.btn-next { background: rgba(77,141,255,.1); border: 1.5px solid rgba(77,141,255,.25); color: var(–blue); padding: 16px 8px; }
+.btn-next { background: rgba(77,141,255,.1); border: 1.5px solid rgba(77,141,255,.25); color: #4d8dff; padding: 16px 8px; }
 .btn-icon { font-size: 28px; }
 .btn-label { font-size: 11px; font-weight: 700; opacity: .7; text-transform: uppercase; letter-spacing: .8px; }
 
-/* STATE SCREENS */
-.state-screen {
-position: absolute; inset: 0;
-display: flex; flex-direction: column;
-align-items: center; justify-content: center;
-gap: 16px; text-align: center; padding: 32px;
-background: var(–card);
-}
+/* ── STATE SCREENS ── */
+.state-screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; padding: 32px; background: #0e0e1c; }
 .state-icon { font-size: 64px; }
 .state-title { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 36px; }
-.state-sub { font-size: 15px; color: var(–muted); line-height: 1.7; }
-.spinner { width: 52px; height: 52px; border: 4px solid var(–border); border-top-color: var(–purple); border-radius: 50%; animation: spin .9s linear infinite; }
+.state-sub { font-size: 15px; color: #7777aa; line-height: 1.7; max-width: 280px; }
+.spinner { width: 52px; height: 52px; border: 4px solid #222238; border-top-color: #a855f7; border-radius: 50%; animation: spin .9s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
-.reload-btn { background: linear-gradient(135deg, #a855f7, #4d8dff); color: #fff; border: none; border-radius: 16px; padding: 16px 36px; font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 22px; cursor: pointer; box-shadow: 0 6px 24px rgba(168,85,247,.3); }
+.reload-btn { background: linear-gradient(135deg, #a855f7, #4d8dff); color: #fff; border: none; border-radius: 16px; padding: 16px 36px; font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 22px; cursor: pointer; box-shadow: 0 6px 24px rgba(168,85,247,.3); margin-top: 8px; }
 
-/* SAVED PANEL */
-#saved-panel {
-position: fixed; inset: 0; background: var(–bg); z-index: 100;
-display: none; flex-direction: column;
-max-width: 430px; margin: 0 auto;
-padding-top: env(safe-area-inset-top);
-padding-bottom: env(safe-area-inset-bottom);
-}
-.panel-header {
-display: flex; align-items: center; justify-content: space-between;
-padding: 18px 20px 14px; border-bottom: 1.5px solid var(–border); flex-shrink: 0;
-}
-.panel-title { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 30px; color: var(–purple); }
-.close-btn { background: var(–card2); border: 1.5px solid var(–border); border-radius: 50%; width: 42px; height: 42px; cursor: pointer; color: var(–text); font-size: 18px; display: flex; align-items: center; justify-content: center; }
+/* ── SAVED PANEL ── */
+#saved-panel { position: fixed; inset: 0; background: #07070f; z-index: 100; display: none; flex-direction: column; max-width: 430px; margin: 0 auto; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.panel-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 14px; border-bottom: 1.5px solid #222238; flex-shrink: 0; }
+.panel-title { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 30px; color: #a855f7; }
+.close-btn { background: #141428; border: 1.5px solid #222238; border-radius: 50%; width: 42px; height: 42px; cursor: pointer; color: #ffffff; font-size: 18px; display: flex; align-items: center; justify-content: center; }
 #saved-list { flex: 1; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
-.saved-item { background: var(–card); border: 1.5px solid rgba(168,85,247,.2); border-radius: 18px; padding: 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.saved-item { background: #0e0e1c; border: 1.5px solid rgba(168,85,247,.2); border-radius: 18px; padding: 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .si-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-.si-meta { font-size: 13px; color: var(–muted); margin-bottom: 10px; }
-.si-winst { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 28px; color: var(–green); text-align: right; }
-.si-lbl { font-size: 11px; color: var(–muted); text-align: right; }
-.open-btn { display: block; background: rgba(168,85,247,.08); border: 1.5px solid rgba(168,85,247,.25); color: var(–purple); border-radius: 10px; padding: 10px 14px; font-size: 13px; font-weight: 700; text-decoration: none; text-align: center; }
-.empty-saved { text-align: center; padding: 60px 20px; color: var(–muted); }
+.si-meta { font-size: 13px; color: #7777aa; margin-bottom: 10px; }
+.si-winst { font-family: ‘Bebas Neue’, Impact, Arial Black, sans-serif; font-size: 28px; color: #00e87a; text-align: right; }
+.si-lbl { font-size: 11px; color: #7777aa; text-align: right; }
+.open-btn { display: block; background: rgba(168,85,247,.08); border: 1.5px solid rgba(168,85,247,.25); color: #a855f7; border-radius: 10px; padding: 10px 14px; font-size: 13px; font-weight: 700; text-decoration: none; text-align: center; }
+.empty-saved { text-align: center; padding: 60px 20px; color: #7777aa; }
 .empty-saved .ei { font-size: 56px; margin-bottom: 14px; }
 .empty-saved p { font-size: 15px; line-height: 1.7; }
 </style>
@@ -331,7 +254,7 @@ padding: 18px 20px 14px; border-bottom: 1.5px solid var(–border); flex-shrink:
     <div class="state-screen">
       <div class="spinner"></div>
       <div class="state-title">Scannen...</div>
-      <div class="state-sub">Live telefoon deals ophalen van Marktplaats</div>
+      <div class="state-sub">Live deals ophalen van Marktplaats</div>
     </div>
   </div>
 </div>
@@ -353,32 +276,41 @@ padding: 18px 20px 14px; border-bottom: 1.5px solid var(–border); flex-shrink:
 </div>
 
 <script>
+// ── ECHTE MARKTWAARDEN NL 2026 ────────────────────────────────────────
+// Gebaseerd op Marktplaats, Fixje, WeByThings data
+const MARKTWAARDEN = {
+  // iPhone verkooprijs particulier Marktplaats (goede staat, 128GB)
+  'iphone 16 pro max': 1050, 'iphone 16 pro': 900, 'iphone 16': 750, 'iphone 15 pro max': 850,
+  'iphone 15 pro': 720, 'iphone 15': 600, 'iphone 14 pro max': 750, 'iphone 14 pro': 620,
+  'iphone 14': 480, 'iphone 13 pro max': 550, 'iphone 13 pro': 450, 'iphone 13': 280,
+  'iphone 12 pro max': 280, 'iphone 12 pro': 240, 'iphone 12': 190, 'iphone 11 pro max': 240,
+  'iphone 11 pro': 200, 'iphone 11': 170, 'iphone xr': 140, 'iphone se': 130,
+  // Samsung verkooprijs particulier Marktplaats
+  'samsung galaxy s24 ultra': 900, 'samsung galaxy s24': 650, 'samsung galaxy s23 ultra': 700,
+  'samsung galaxy s23': 500, 'samsung galaxy s22 ultra': 550, 'samsung galaxy s22': 380,
+  'samsung galaxy s21 ultra': 380, 'samsung galaxy s21': 280, 'samsung galaxy s20': 220,
+  'samsung galaxy a54': 280, 'samsung galaxy a53': 230, 'samsung galaxy a52': 180,
+  'samsung galaxy a34': 250, 'samsung galaxy a33': 200, 'samsung galaxy a32': 160,
+};
+
+function getMarktwaarde(titel) {
+  const t = titel.toLowerCase();
+  for (const [model, prijs] of Object.entries(MARKTWAARDEN)) {
+    if (t.includes(model)) return prijs;
+  }
+  // Fallback: schat op basis van merk
+  if (t.includes('iphone')) return 200;
+  if (t.includes('samsung')) return 180;
+  return 150;
+}
+
 // ── ZOEKTERMEN ────────────────────────────────────────────────────────
 const ZOEKTERMEN = [
-  'iphone 12', 'iphone 13', 'iphone 11', 'iphone se',
-  'samsung galaxy s21', 'samsung galaxy s22', 'samsung galaxy a52',
-  'iphone 14', 'samsung galaxy s20', 'iphone xr',
-  'samsung galaxy a53', 'iphone 12 mini', 'samsung galaxy s23',
-  'iphone 11 pro', 'samsung galaxy a32'
+  'iphone 13', 'iphone 12', 'iphone 11', 'samsung galaxy s22',
+  'iphone 14', 'samsung galaxy s21', 'iphone xr', 'samsung galaxy a53',
+  'iphone se', 'samsung galaxy s23', 'iphone 15', 'samsung galaxy a52',
+  'iphone 12 pro', 'samsung galaxy s20', 'iphone 11 pro',
 ];
-
-// Verwachte marges per model
-const MARGES = {
-  'iphone 14':    { mult: 1.25 },
-  'iphone 13':    { mult: 1.28 },
-  'iphone 12':    { mult: 1.30 },
-  'iphone 11':    { mult: 1.32 },
-  'iphone se':    { mult: 1.35 },
-  'iphone xr':    { mult: 1.33 },
-  'samsung s23':  { mult: 1.26 },
-  'samsung s22':  { mult: 1.28 },
-  'samsung s21':  { mult: 1.30 },
-  'samsung s20':  { mult: 1.32 },
-  'samsung a53':  { mult: 1.35 },
-  'samsung a52':  { mult: 1.36 },
-  'samsung a32':  { mult: 1.38 },
-  'default':      { mult: 1.30 },
-};
 
 const PROXIES = [
   'https://corsproxy.io/?',
@@ -390,37 +322,43 @@ let deals = [], cur = 0, saved = [];
 let isAnim = false, tx = 0, ty = 0, dx = 0, dragging = false;
 let zoekOffset = 0;
 
-// ── BOOT ──────────────────────────────────────────────────────────────
 window.addEventListener('load', laadDeals);
 
-// ── DATA ──────────────────────────────────────────────────────────────
+// ── DATA OPHALEN ──────────────────────────────────────────────────────
 async function laadDeals() {
-  toonLaad('Marktplaats scannen...', 'Live telefoon deals ophalen');
+  toonLaad('Scannen...', 'Marktplaats live doorzoeken');
   const items = [];
 
-  const termBatch = [
-    ...ZOEKTERMEN.slice(zoekOffset),
-    ...ZOEKTERMEN.slice(0, zoekOffset)
-  ];
+  const volgorde = [...ZOEKTERMEN.slice(zoekOffset), ...ZOEKTERMEN.slice(0, zoekOffset)];
 
-  for (const term of termBatch) {
+  for (const term of volgorde) {
     try {
       const batch = await zoekMP(term);
       items.push(...batch);
-      if (items.length >= 25) break;
+      if (items.length >= 30) break;
     } catch(e) { console.warn(term, e.message); }
   }
 
   if (!items.length) {
-    toonFout('Geen verbinding', 'Controleer je internet en probeer opnieuw.');
+    toonFout('Geen resultaten', 'Marktplaats is niet bereikbaar. Controleer je internet en probeer opnieuw.');
     return;
   }
 
-  deals = items.map(verwerk).filter(Boolean)
-    .sort((a, b) => {
-      if (b.hot !== a.hot) return b.hot ? 1 : -1;
-      return b.winstPerc - a.winstPerc;
-    });
+  // Verwerk en filter
+  const verwerkt = items.map(verwerk).filter(d => d !== null && d.winst > 20);
+
+  // Sorteer: hot deals eerst, dan beste marge
+  verwerkt.sort((a, b) => {
+    if (b.hot !== a.hot) return b.hot ? 1 : -1;
+    return b.winstPerc - a.winstPerc;
+  });
+
+  deals = verwerkt;
+
+  if (!deals.length) {
+    toonFout('Geen kansen gevonden', 'Geen winstgevende deals gevonden. Probeer een nieuwe batch.');
+    return;
+  }
 
   updateStats();
   cur = 0;
@@ -434,101 +372,140 @@ async function nieuweDeals() {
 }
 
 async function zoekMP(query) {
-  // Categorie 328 = Mobiele telefoons op Marktplaats
-  const url = `https://www.marktplaats.nl/lrp/api/search?query=${encodeURIComponent(query)}&l1CategoryId=20&l2CategoryId=328&priceTo=800&priceFrom=50&limit=15&offset=0&sortBy=SORT_INDEX&sortOrder=DECREASING`;
+  // Marktplaats categorie 328 = Mobiele telefoons
+  const url = `https://www.marktplaats.nl/lrp/api/search?query=${encodeURIComponent(query)}&l1CategoryId=20&l2CategoryId=328&priceFrom=50&priceTo=600&limit=15&offset=0&sortBy=SORT_INDEX&sortOrder=DECREASING`;
 
   for (const proxy of PROXIES) {
     try {
       const res = await fetch(proxy + encodeURIComponent(url), {
-        signal: AbortSignal.timeout(9000)
+        signal: AbortSignal.timeout(10000)
       });
       if (!res.ok) continue;
-      const data = await res.json();
-      return data.listings || data.data?.listings || [];
-    } catch(e) { console.warn('Proxy mislukt:', proxy); }
+      const text = await res.text();
+      const data = JSON.parse(text);
+      const listings = data.listings || data.data?.listings || [];
+      return Array.isArray(listings) ? listings : [];
+    } catch(e) {
+      console.warn('Proxy mislukt:', proxy, e.message);
+    }
   }
   return [];
 }
 
+// ── VERWERK ADVERTENTIE ───────────────────────────────────────────────
 function verwerk(item) {
   try {
-    const prijs = item.priceInfo?.priceCents
-      ? Math.round(item.priceInfo.priceCents / 100) : 0;
+    // Prijs ophalen
+    const vraagprijs = item.priceInfo?.priceCents
+      ? Math.round(item.priceInfo.priceCents / 100)
+      : item.price?.amount || 0;
 
-    if (!prijs || prijs < 50 || prijs > 900) return null;
+    if (!vraagprijs || vraagprijs < 50 || vraagprijs > 700) return null;
 
-    const titel = item.title || 'Telefoon';
-    const desc = (item.description || '').slice(0, 300);
-    const loc = item.location?.cityName || 'Nederland';
-    const url = item.vipUrl ? `https://www.marktplaats.nl${item.vipUrl}` : 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons/';
-    const foto = item.pictures?.[0]?.mediumUrl || item.pictures?.[0]?.largeUrl || null;
+    const titel     = (item.title || '').trim();
+    if (!titel) return null;
+
+    const desc      = (item.description || '').slice(0, 400);
+    const locatie   = item.location?.cityName || item.sellerLocation?.cityName || 'Nederland';
+    const verkoper  = item.sellerInformation?.displayName || 'Particulier';
+    const foto      = item.pictures?.[0]?.mediumUrl || item.pictures?.[0]?.largeUrl || null;
+    const mpUrl     = item.vipUrl ? `https://www.marktplaats.nl${item.vipUrl}` : 'https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons/';
 
     // Datum
     let datum = 'Recent';
-    if (item.date) {
-      try {
-        const d = typeof item.date === 'number' ? new Date(item.date) : new Date(item.date);
-        if (!isNaN(d.getTime())) datum = d.toLocaleDateString('nl-NL', {day:'numeric', month:'short'});
-      } catch(e) {}
-    }
+    try {
+      const raw = item.date;
+      if (raw) {
+        const d = typeof raw === 'number' ? new Date(raw) : new Date(raw);
+        if (!isNaN(d.getTime())) datum = d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'short' });
+      }
+    } catch(e) {}
 
-    const verkoper = item.sellerInformation?.displayName || 'Particulier';
     const titelL = titel.toLowerCase();
-    const descL = desc.toLowerCase();
+    const descL  = desc.toLowerCase();
 
-    // Detecteer merk
-    const isIphone = titelL.includes('iphone') || titelL.includes('apple');
+    // Merk detecteren
+    const isIphone  = titelL.includes('iphone') || titelL.includes('apple');
     const isSamsung = titelL.includes('samsung');
-    const merk = isIphone ? 'iphone' : isSamsung ? 'samsung' : 'overig';
+    if (!isIphone && !isSamsung) return null; // alleen iPhone en Samsung
 
-    // Detecteer schade
-    const schadeWoorden = ['schade', 'barst', 'gebarsten', 'kapot', 'defect', 'kras', 'beschadigd', 'gebroken', 'crack', 'broken', 'scherm kapot'];
+    // Schade detecteren
+    const schadeWoorden = ['schade', 'barst', 'gebarsten', 'kapot', 'defect', 'kras', 'beschadigd', 'gebroken', 'crack', 'broken', 'scherm kapot', 'display kapot', 'touchscreen'];
     const heeftSchade = schadeWoorden.some(w => descL.includes(w) || titelL.includes(w));
 
-    // Detecteer conditie
-    const isNieuw = descL.includes('nieuw') || descL.includes('sealed') || descL.includes('ongeopend');
-    const soort = heeftSchade ? 'schade' : isNieuw ? 'nieuw' : 'gebruikt';
-
-    // Schade omschrijving
+    // Schade omschrijving ophalen
     let schadeDesc = '';
     if (heeftSchade) {
-      const schadeZin = schadeWoorden.find(w => descL.includes(w));
-      const idx = descL.indexOf(schadeZin || '');
-      if (idx > -1) schadeDesc = desc.slice(Math.max(0, idx - 20), idx + 80).trim();
+      for (const w of schadeWoorden) {
+        const idx = descL.indexOf(w);
+        if (idx > -1) {
+          schadeDesc = desc.slice(Math.max(0, idx - 30), idx + 100).trim();
+          break;
+        }
+      }
     }
 
-    // Marge berekening
-    const key = Object.keys(MARGES).find(k => titelL.includes(k)) || 'default';
-    const multBase = MARGES[key].mult;
-    // Schade = lagere verkoopprijs maar ook goedkoper inkopen
-    const mult = heeftSchade ? multBase * 0.85 : multBase;
-    const bod = heeftSchade ? Math.round(prijs * 0.75) : Math.round(prijs * 0.82);
-    const verkoop = Math.round(prijs * mult);
-    const winst = Math.max(0, verkoop - bod);
-    const winstPerc = Math.round(winst / bod * 100);
+    // iCloud lock check (grote rode vlag)
+    const iCloudLock = descL.includes('icloud') && (descL.includes('lock') || descL.includes('geblokkeerd') || descL.includes('activation'));
+    if (iCloudLock) return null; // sla over, niet verkoopbaar
 
-    const hot = winstPerc >= 30 || (heeftSchade && winstPerc >= 20);
+    // Staat bepalen
+    const isNieuw = descL.includes('nieuw') || descL.includes('sealed') || descL.includes('ongeopend') || descL.includes('nieuwstaat');
 
-    // Storage/GB detecteren
+    // Echte marktwaarde ophalen
+    const marktwaarde = getMarktwaarde(titel);
+
+    // Te duur? Dan geen kans
+    if (vraagprijs >= marktwaarde * 0.95) return null;
+
+    // Berekeningen
+    const bod         = Math.round(vraagprijs * 0.82); // bied 18% minder
+    const verkoop     = heeftSchade
+      ? Math.round(marktwaarde * 0.65)   // schade = 35% minder verkoopprijs
+      : Math.round(marktwaarde * 0.92);  // kleine marge op marktwaarde
+    const winst       = Math.max(0, verkoop - bod);
+    const winstPerc   = bod > 0 ? Math.round(winst / bod * 100) : 0;
+
+    // Alleen tonen als er winst te maken is
+    if (winst < 20) return null;
+
+    // Ondergewaardeerd? (vraagprijs ver onder marktwaarde)
+    const onderGewaardeerd = vraagprijs < marktwaarde * 0.70;
+
+    const hot = winstPerc >= 30 || onderGewaardeerd;
+
+    // Deal tip genereren
+    let tip = '';
+    if (onderGewaardeerd) tip = `Vraagprijs is €${marktwaarde - vraagprijs} onder marktwaarde. Snel handelen!`;
+    else if (heeftSchade) tip = `Schade reparen kost €30–80. Daarna verkoopbaar voor €${verkoop}.`;
+    else if (winstPerc >= 25) tip = `Goede marge. Bied €${bod} en verkoop voor €${verkoop} op Marktplaats.`;
+
+    // Opslag
     const gbMatch = titel.match(/(\d+)\s*(?:GB|gb)/);
-    const gb = gbMatch ? gbMatch[1] + ' GB' : null;
+    const opslag  = gbMatch ? gbMatch[1] + ' GB' : '?';
 
-    // Kleur detecteren
-    const kleuren = ['zwart','wit','blauw','rood','groen','goud','zilver','paars','rose','grijs','black','white','blue','red'];
-    const kleur = kleuren.find(k => titelL.includes(k));
+    // Batterij
+    const batMatch = desc.match(/(\d{2,3})\s*%/);
+    const batterij = batMatch ? batMatch[1] + '%' : null;
 
     return {
-      titel, desc, loc, url, foto, datum, verkoper,
-      prijs, bod, verkoop, winst, winstPerc,
-      soort, hot, merk, heeftSchade, schadeDesc,
-      gb, kleur: kleur ? kleur.charAt(0).toUpperCase() + kleur.slice(1) : null,
+      titel, desc, locatie, verkoper, foto, mpUrl, datum,
+      vraagprijs, bod, verkoop, winst, winstPerc,
+      marktwaarde, onderGewaardeerd,
+      heeftSchade, schadeDesc,
+      isIphone, isSamsung,
+      isNieuw, hot, tip,
+      opslag, batterij,
     };
-  } catch(e) { return null; }
+  } catch(e) {
+    return null;
+  }
 }
 
 // ── STATS ─────────────────────────────────────────────────────────────
 function updateStats() {
   document.getElementById('s-leads').textContent = deals.length;
+  if (!deals.length) return;
   const marges = deals.map(d => d.winst);
   const gem = Math.round(marges.reduce((a,b)=>a+b,0)/marges.length);
   document.getElementById('s-marge').textContent = '€' + gem.toLocaleString('nl-NL');
@@ -543,22 +520,24 @@ function toonDeal() {
   if (cur >= deals.length) {
     card.innerHTML = `<div class="state-screen">
       <div class="state-icon">✅</div>
-      <div class="state-title">Batch klaar!</div>
+      <div class="state-title">Klaar!</div>
       <div class="state-sub">Je hebt alle ${deals.length} deals bekeken.</div>
-      <button class="reload-btn" onclick="nieuweDeals()">⚡ Meer deals</button>
+      <button class="reload-btn" onclick="nieuweDeals()">⚡ Nieuwe deals laden</button>
     </div>`;
     return;
   }
 
   const d = deals[cur];
 
+  // Badges opbouwen
   const badges = [];
-  if (d.hot)               badges.push('<span class="badge b-hot">🔥 HOT DEAL</span>');
-  if (d.heeftSchade)       badges.push('<span class="badge b-dmg">⚠️ SCHADE</span>');
-  if (d.soort==='nieuw')   badges.push('<span class="badge b-new">✨ NIEUW</span>');
-  if (d.soort==='gebruikt'&&!d.hot) badges.push('<span class="badge b-ok">✅ GEBRUIKT</span>');
-  if (d.merk==='iphone')   badges.push('<span class="badge b-iphone">🍎 IPHONE</span>');
-  if (d.merk==='samsung')  badges.push('<span class="badge b-samsung">📱 SAMSUNG</span>');
+  if (d.hot)              badges.push('<span class="badge b-hot">🔥 HOT DEAL</span>');
+  if (d.onderGewaardeerd) badges.push('<span class="badge b-goedkoop">💰 ONDERGEWAARDEERD</span>');
+  if (d.heeftSchade)      badges.push('<span class="badge b-dmg">⚠️ SCHADE</span>');
+  if (d.isNieuw)          badges.push('<span class="badge b-new">✨ NIEUW</span>');
+  if (d.isIphone)         badges.push('<span class="badge b-iphone">🍎 iPHONE</span>');
+  if (d.isSamsung)        badges.push('<span class="badge b-sam">📱 SAMSUNG</span>');
+  if (!d.hot && !d.heeftSchade && !d.isNieuw) badges.push('<span class="badge b-ok">✅ GEBRUIKT</span>');
   badges.push('<span class="badge b-live">🔴 LIVE</span>');
 
   const dots = deals.slice(0, Math.min(deals.length, 10)).map((_,i) =>
@@ -566,8 +545,8 @@ function toonDeal() {
   ).join('');
 
   const fotoHtml = d.foto
-    ? `<img class="phone-photo" src="${d.foto}" onerror="this.style.display='none'">`
-    : `<div class="no-photo">${d.merk==='iphone'?'🍎':'📱'}</div>`;
+    ? `<img class="phone-photo" src="${d.foto}" loading="lazy" onerror="this.style.display='none'">`
+    : `<div class="no-photo">${d.isIphone?'🍎':'📱'}</div>`;
 
   const schadeHtml = d.heeftSchade && d.schadeDesc ? `
     <div class="schade-box">
@@ -575,15 +554,11 @@ function toonDeal() {
       <div class="schade-text">${d.schadeDesc}</div>
     </div>` : '';
 
-  const specItems = [
-    { l: 'Locatie', v: d.loc },
-    { l: 'Verkoper', v: d.verkoper },
-    d.gb ? { l: 'Opslag', v: d.gb } : { l: 'Datum', v: d.datum },
-    { l: 'Staat', v: d.heeftSchade ? '⚠️ Schade' : d.soort === 'nieuw' ? '✨ Nieuw' : '✅ Gebruikt' },
-  ];
-
-  const asUrl = `https://www.autoscout24.nl/lst?q=${encodeURIComponent(d.titel.split(' ').slice(0,3).join(' '))}&cy=NL`;
-  const mpUrl = d.url;
+  const tipHtml = d.tip ? `
+    <div class="tip-box">
+      <div class="tip-title">💡 Deal tip</div>
+      <div class="tip-text">${d.tip}</div>
+    </div>` : '';
 
   card.innerHTML = `
     <div class="swipe-hint hint-save" id="hint-save">OPSLAAN ✓</div>
@@ -594,40 +569,50 @@ function toonDeal() {
     <div class="section">
       <div class="badges">${badges.join('')}</div>
       <div class="phone-title">${d.titel}</div>
-      <div class="phone-sub">📍 ${d.loc} &nbsp;·&nbsp; ${d.datum}</div>
+      <div class="phone-sub">📍 ${d.locatie} &nbsp;·&nbsp; ${d.datum}</div>
+    </div>
+
+    <div class="marktwaarde-bar">
+      <div class="mv-item">
+        <div class="mv-lbl">Vraagprijs</div>
+        <div class="mv-val mv-ask">€${d.vraagprijs.toLocaleString('nl-NL')}</div>
+      </div>
+      <div class="mv-divider">→</div>
+      <div class="mv-item">
+        <div class="mv-lbl">Marktwaarde</div>
+        <div class="mv-val mv-markt">€${d.marktwaarde.toLocaleString('nl-NL')}</div>
+      </div>
+      <div class="mv-divider">→</div>
+      <div class="mv-item">
+        <div class="mv-lbl">Verkoopprijs</div>
+        <div class="mv-val mv-sell">€${d.verkoop.toLocaleString('nl-NL')}</div>
+      </div>
     </div>
 
     <div class="price-grid">
       <div class="price-box">
-        <div class="price-lbl">Vraagprijs</div>
-        <div class="price-num p-ask">€${d.prijs.toLocaleString('nl-NL')}</div>
-      </div>
-      <div class="price-box">
         <div class="price-lbl">Jouw bod</div>
         <div class="price-num p-bid">€${d.bod.toLocaleString('nl-NL')}</div>
       </div>
-    </div>
-
-    <div class="winst-banner">
-      <div>
-        <div class="w-lbl">Verkoopprijs</div>
-        <div class="w-val">€${d.verkoop.toLocaleString('nl-NL')}</div>
-      </div>
-      <div>
-        <div class="w-lbl" style="text-align:right">Potentiële winst</div>
-        <div class="winst-num">+€${d.winst.toLocaleString('nl-NL')} <span class="winst-perc">${d.winstPerc}%</span></div>
+      <div class="price-box">
+        <div class="price-lbl">Potentiële winst</div>
+        <div class="price-num" style="color:#00e87a">+€${d.winst.toLocaleString('nl-NL')}</div>
       </div>
     </div>
 
     <div class="specs-grid">
-      ${specItems.map(s=>`<div class="spec-box"><div class="spec-lbl">${s.l}</div><div class="spec-val">${s.v}</div></div>`).join('')}
+      <div class="spec-box"><div class="spec-lbl">Opslag</div><div class="spec-val">${d.opslag}</div></div>
+      <div class="spec-box"><div class="spec-lbl">Batterij</div><div class="spec-val">${d.batterij || 'Zie adv.'}</div></div>
+      <div class="spec-box"><div class="spec-lbl">Staat</div><div class="spec-val" style="font-size:13px">${d.heeftSchade?'⚠️ Schade':d.isNieuw?'✨ Nieuw':'✅ Gebruikt'}</div></div>
+      <div class="spec-box"><div class="spec-lbl">Verkoper</div><div class="spec-val" style="font-size:12px">${d.verkoper}</div></div>
     </div>
 
     <div class="section">
-      <p class="desc-text">${d.desc || 'Bekijk de advertentie voor meer informatie.'}</p>
+      <p class="desc-text">${d.desc || 'Bekijk de advertentie voor meer info.'}</p>
       ${schadeHtml}
+      ${tipHtml}
       <div class="btn-row">
-        <a class="link-btn link-btn-mp" href="${mpUrl}" target="_blank">🔗 Open advertentie</a>
+        <a class="link-btn link-btn-mp" href="${d.mpUrl}" target="_blank">🔗 Open advertentie</a>
         <a class="link-btn" href="https://www.marktplaats.nl/l/telecommunicatie/mobiele-telefoons/" target="_blank">🔍 Meer op MP</a>
       </div>
     </div>
@@ -637,11 +622,22 @@ function toonDeal() {
 }
 
 function toonLaad(t, s) {
-  document.getElementById('main-card').innerHTML = `<div class="state-screen"><div class="spinner"></div><div class="state-title">${t}</div><div class="state-sub">${s}</div></div>`;
+  document.getElementById('main-card').innerHTML = `
+    <div class="state-screen">
+      <div class="spinner"></div>
+      <div class="state-title">${t}</div>
+      <div class="state-sub">${s}</div>
+    </div>`;
 }
 
 function toonFout(t, s) {
-  document.getElementById('main-card').innerHTML = `<div class="state-screen"><div class="state-icon">⚠️</div><div class="state-title">${t}</div><div class="state-sub">${s}</div><button class="reload-btn" onclick="laadDeals()">↻ Opnieuw</button></div>`;
+  document.getElementById('main-card').innerHTML = `
+    <div class="state-screen">
+      <div class="state-icon">⚠️</div>
+      <div class="state-title">${t}</div>
+      <div class="state-sub">${s}</div>
+      <button class="reload-btn" onclick="laadDeals()">↻ Opnieuw proberen</button>
+    </div>`;
 }
 
 // ── SWIPE ─────────────────────────────────────────────────────────────
@@ -649,8 +645,7 @@ function initSwipe() {
   const card = document.getElementById('main-card');
   card.addEventListener('touchstart', e => {
     if (isAnim) return;
-    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
-    dx = 0; dragging = false;
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY; dx = 0; dragging = false;
   }, { passive: true });
 
   card.addEventListener('touchmove', e => {
@@ -717,9 +712,9 @@ function renderSaved() {
   list.innerHTML = saved.map(d => `
     <div class="saved-item">
       <div style="flex:1;min-width:0">
-        <div class="si-title">${d.merk==='iphone'?'🍎':'📱'} ${d.titel}</div>
-        <div class="si-meta">📍 ${d.loc} · bod <strong style="color:var(--gold)">€${d.bod.toLocaleString('nl-NL')}</strong>${d.heeftSchade ? ' · ⚠️ Schade' : ''}</div>
-        <a class="open-btn" href="${d.url}" target="_blank">🔗 Open op Marktplaats</a>
+        <div class="si-title">${d.isIphone?'🍎':'📱'} ${d.titel}</div>
+        <div class="si-meta">📍 ${d.locatie} · bod <strong style="color:#ffb800">€${d.bod.toLocaleString('nl-NL')}</strong> · markt €${d.marktwaarde}${d.heeftSchade?' · ⚠️ Schade':''}</div>
+        <a class="open-btn" href="${d.mpUrl}" target="_blank">🔗 Open op Marktplaats</a>
       </div>
       <div style="flex-shrink:0;padding-left:8px">
         <div class="si-winst">+€${d.winst.toLocaleString('nl-NL')}</div>
