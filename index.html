@@ -614,14 +614,37 @@ let tx = 0, ty = 0, dx = 0, dragging = false;
 window.addEventListener('load', laadDeals);
 
 // ── DATA ──────────────────────────────────────────────────────────────
-async function nieuweDeals() {
+async function nieuweDeals() { await laadDeals(); }
+async function _oude_nieuweDeals_backup() {
   zoekOffset += 5; // volgende batch zoektermen
   if (zoekOffset >= ZOEKTERMEN.length) zoekOffset = 0;
   await laadDeals();
 }
 
+// ── BACKEND URL (verander na Render deployment) ──────────────────────
+const API_URL = 'https://phoneflip-api.onrender.com/api/deals';
+
 async function laadDeals() {
-  toonLaadScherm('Scannen...', 'Live telefoon deals ophalen');
+  toonLaad('Scannen...', 'Live Marktplaats deals ophalen');
+  try {
+    const res = await fetch(API_URL, { signal: AbortSignal.timeout(20000) });
+    if (!res.ok) throw new Error('Server fout');
+    const data = await res.json();
+    deals = (data.deals || []);
+    if (!deals.length) {
+      toonFout('Geen kansen', 'Geen winstgevende deals gevonden. Probeer opnieuw.');
+      return;
+    }
+    updateStats();
+    cur = 0;
+    toonDeal();
+    initSwipe();
+  } catch(e) {
+    toonFout('Verbindingsfout', 'Server niet bereikbaar. Controleer internet.');
+  }
+}
+async function OUDE_laadDeals_NIET_GEBRUIKEN() {
+  toonLaad('skip', 'skip');
   const items = [];
 
   // Roteer door zoektermen via offset voor verse resultaten
